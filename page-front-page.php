@@ -9,5 +9,6 @@
         <?php the_content() ?>
     <?php endwhile; ?>
 <?php endif; ?>
+/** Apenas um teste inicial */
 
 <?php get_footer() ?>
