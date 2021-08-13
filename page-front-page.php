@@ -1,23 +1,13 @@
-<?php
-	
-	/* Template name: Page - Front Page */
+<?php /* Template name: Page - Front Page */ ?>
 
-	get_header(); 
-	require(get_stylesheet_directory() . '/template-parts/slider-front-page.php'); 
-?>
-			<section class="pa-content pb-5">
-				<div class="pa-widgets">
-					<div class="container">
-						<div class="row row-cols-auto">
-						<?php 
-							if ( is_active_sidebar( 'front-page' ) ) {
-						
-								dynamic_sidebar( 'front-page' );
-								
-							}
-						?>
-						</div>
-					</div>
-				</div>
-			</section>
-			<?php get_footer();?>
+<?php get_header() ?>
+
+/** Apenas um teste inicial */
+<?php if (have_posts()) : ?>
+    <?php while (have_posts()) :
+        the_post() ?>
+        <?php the_content() ?>
+    <?php endwhile; ?>
+<?php endif; ?>
+
+<?php get_footer() ?>
