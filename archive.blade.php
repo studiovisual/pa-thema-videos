@@ -20,6 +20,7 @@
 							'post__not_in' 		  => !empty($sticks) ? array($sticks[0]) : null,
 							'posts_per_page'	  => 15,
 							'ignore_sticky_posts' => 1,
+							'cat'				  => get_query_var('cat'),
 							'paged' 			  => (get_query_var('paged')) ? get_query_var('paged') : 1,
 						),
 					])
