@@ -6,6 +6,7 @@ if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
 
 new \Blocks\ChildBlocks();
 
+define('PARENT_THEME_URI', get_template_directory_uri() . '/');
 define('THEME_URI', get_stylesheet_directory_uri() . '/');
 define('THEME_DIR', get_stylesheet_directory() . '/');
 define('THEME_CSS', THEME_URI . 'assets/css/');

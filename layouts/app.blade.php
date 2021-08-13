@@ -1,7 +1,4 @@
-@php 
-	get_header(); 
-	require(get_template_directory() . '/components/parent/header.php'); 
-@endphp
+{!! get_header() !!}
 
 @yield('content')
 

@@ -1,4 +1,4 @@
-<?php if (is_home() && !is_front_page()) : ?>
+@if(is_home() && !is_front_page())
     <section class="pa-breadcrumb">
         <div class="container">
             <div class="row">
@@ -12,4 +12,4 @@
             </div>
         </div>
     </section>
-<?php endif; ?>
+@endif

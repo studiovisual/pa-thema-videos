@@ -1,14 +1,12 @@
-<?php
-    $campo = get_info_sedes();
-    $lang = get_info_lang();
-?>
+@php $campo = get_info_sedes() @endphp
+@php $lang = get_info_lang() @endphp
 
 <header class="pa-menu" id="topo">
     <div class="pa-menu-desktop container d-none d-xl-block">
         <div class="row g-0 h-100">
             <div class="col-auto d-flex align-items-center">
-                <a href="<?= get_home_url(); ?>" class="py-3 w-auto h-100">
-                    <img src="<?= THEME_IMGS . 'logo-horizontal-color.svg' ?>" alt="<?= bloginfo('name') ?>" title="<?= bloginfo('name') ?>" class="w-auto">
+                <a href="{{ get_home_url() }}" class="py-3 w-auto h-100">
+                    <img src="{{ THEME_IMGS }}logo-horizontal-color.svg" alt="{{ bloginfo('name') }}" title="{{ bloginfo('name') }}" class="w-auto">
                 </a>
             </div>
             <div class="col d-flex flex-column justify-content-between">
@@ -43,7 +41,7 @@
                     </li>
                 </ul>
             </nav>
-            <?php
+            @php
                 wp_nav_menu(
                     array (
                         'theme_location'    => 'pa-menu-default',
@@ -56,7 +54,7 @@
                         'walker'            => new PaMenuWalker()
                     )
                 );
-                ?>
+            @endphp
             </div>
         </div>
     </div>
@@ -66,7 +64,7 @@
 
         <div class="row g-0 pt-3 pb-3">
             <div class="col-6">
-                <img src="<?= THEME_IMGS . 'logo_horizontal_color.svg' ?>" alt="<?= bloginfo('name') ?>" title="<?= bloginfo('name') ?>" class="w-auto">
+                <img src="{{ THEME_IMGS}}logo_horizontal_color.svg" alt="{{ bloginfo('name') }}" title="{{ bloginfo('name') }}" class="w-auto">
             </div>
             <div class="col d-flex flex-row-reverse align-items-center">
                 <i class="fa fa-bars fa-2x" aria-hidden="true" onclick="pa_action_menu()" ></i>
@@ -82,12 +80,10 @@
                             </ul>
                         </div>
                     </li>
-                    <li><img src="<?= get_template_directory_uri() . "/assets/imgs/close.svg" ?>" alt="" onclick="pa_action_menu()">
+                    <li><img src="{{ PARENT_THEME_URI }}/assets/imgs/close.svg" alt="" onclick="pa_action_menu()">
                     </li>
                 </ul>
-                <?php
-                    $PA_Menu_Mobile = new PaMenuMobile('pa-menu-default');
-                ?>
+                @php $PA_Menu_Mobile = new PaMenuMobile('pa-menu-default') @endphp
             </div>
             <div class="mask"></div>
     </div>
