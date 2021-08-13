@@ -2,6 +2,7 @@
     "name": "igrejaadventista/pa-thema-videos",
     "type": "wordpress-theme",
     "require": {
-        "wordplate/acf": "^9.1"
+        "wordplate/acf": "^9.1",
+        "fiskhandlarn/blade": "^0.6.1"
     }
 }
