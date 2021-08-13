@@ -83,7 +83,7 @@
                     <li><img src="{{ PARENT_THEME_URI }}/assets/imgs/close.svg" alt="" onclick="pa_action_menu()">
                     </li>
                 </ul>
-                @php $PA_Menu_Mobile = new PaMenuMobile('pa-menu-default') @endphp
+                @php (new PaMenuMobile('pa-menu-default'))
             </div>
             <div class="mask"></div>
     </div>
