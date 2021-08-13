@@ -47,6 +47,7 @@ class PaAcfSiteMinistries {
                         'depto-salt' => 'SALT',
                         'depto-saude' => 'Saúde',
                         'depto-universitario' => 'Universitários',
+                        'depto-videos' => 'Vídeos',
                         'depto-voluntario' => 'Voluntários',
                     ])
                     ->returnFormat('value'), // array, label or value (default)
