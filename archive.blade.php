@@ -1,8 +1,6 @@
-@php 
-	get_header(); 
-	require(get_template_directory() . '/components/parent/header.php'); 
-	
-@endphp
+@extends('layouts.app')
+
+@section('content')
 	<div class="pa-content py-5">
 		<div class="container">
 			<div class="row row-cols-auto">
@@ -43,5 +41,4 @@
 			</div>
 		</div>
 	</div>
-
-{!! get_footer() !!}
+@endsection
