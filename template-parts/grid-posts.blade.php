@@ -4,35 +4,29 @@
     @endphp
 
     @if($query->have_posts())
-        @while($query->have_posts())
-            @php($query->the_post())
+        <div class="row pa-w-list-videos">
+            @while($query->have_posts())
+                @php($query->the_post())
 
-            <div class="pa-blog-item mb-4 mb-md-4 border-0">
-                <a href="<?= the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                    <div class="row">
+                <div class="pa-blog-item mb-4 mb-md-4 border-0 col-12 col-md-4 position-relative">
+                    <div class="ratio ratio-16x9 mb-2">
+                        <figure class="figure">
+                            <img src="{{ check_immg(get_the_ID(), 'full') }}" class="figure-img img-fluid rounded m-0 w-100 h-100 object-cover" alt="{{ get_the_title() }}">
 
-                        <?php if(has_post_thumbnail()) : ?>
-
-                            <div class="col-5 col-md-4">
-                                <div class="ratio ratio-16x9">
-                                    <figure class="figure m-xl-0">
-                                        <img src="<?= check_immg(get_the_ID(), 'full'); ?>" class="figure-img img-fluid rounded m-0 h-100 w-100" alt="...">
-                                    </figure>	
-                                </div>
-                            </div>
-
-                        <?php endif; ?>
-
-                        <div class="col">
-                            <div class="card-body p-0 <?= has_post_thumbnail() ?: 'pl-4 py-4 border-left border-5 pa-border'?>">
-                                <h3 class="fw-bold h6 mt-xl-2 pa-truncate-4"><?= get_the_title(); ?></h3>
-                                <p class="d-none d-xl-block"><?= wp_trim_words(get_the_excerpt(), 30)  ?></p>
-                            </div>
-                        </div>
+                            <div class="figure-caption position-absolute w-100 h-100 d-block">
+								<span class="pa-video-time position-absolute px-2 rounded-1">
+                                    <i class="far fa-clock me-1" aria-hidden="true"></i> 3:40
+                                </span>
+							</div>
+                        </figure>	
                     </div>
-                </a>
-            </div>
-        @endwhile
+
+                    <a class="stretched-link" href="{{ the_permalink() }}" title="{{ the_title_attribute() }}">
+                        <h3 class="card-title fw-bold h6 pa-truncate-2">{!! get_the_title() !!}</h3>
+                    </a>
+                </div>
+            @endwhile
+        </div>
 
         @php(wp_reset_postdata())
     @else
