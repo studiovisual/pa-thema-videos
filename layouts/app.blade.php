@@ -1,4 +1,4 @@
-{!! get_header() !!}
+@include('header')
 
 @yield('content')
 

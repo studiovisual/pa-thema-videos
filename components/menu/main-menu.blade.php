@@ -64,7 +64,7 @@
 
         <div class="row g-0 pt-3 pb-3">
             <div class="col-6">
-                <img src="{{ THEME_IMGS}}logo_horizontal_color.svg" alt="{{ bloginfo('name') }}" title="{{ bloginfo('name') }}" class="w-auto">
+                <img src="{{ THEME_IMGS }}logo_horizontal_color.svg" alt="{{ bloginfo('name') }}" title="{{ bloginfo('name') }}" class="w-auto">
             </div>
             <div class="col d-flex flex-row-reverse align-items-center">
                 <i class="fa fa-bars fa-2x" aria-hidden="true" onclick="pa_action_menu()" ></i>
