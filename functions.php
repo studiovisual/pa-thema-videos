@@ -44,3 +44,38 @@ add_filter('template_include', function ($template) {
 
     return $template;
 });
+
+/**
+* Modify category query
+*/
+add_action('pre_get_posts', function($query) {
+    if(is_admin() || !is_category() || !$query->is_main_query())
+        return $query;
+
+    global $queryFeatured;
+    $queryFeatured = new WP_Query(
+        array(
+            'posts_per_page' => 1,
+            'post_status'	 => 'publish',
+            'cat'			 => get_query_var('cat'),
+            'post__in'       => get_option('sticky_posts'),
+        )
+    );
+
+    if(empty($queryFeatured->found_posts)):
+        $queryFeatured = new WP_Query(
+            array(
+                'posts_per_page' 	   => 1,
+                'post_status'	 	   => 'publish',
+                'cat'			 	   => get_query_var('cat'),
+                'ignore_sticky_posts ' => true,
+            )
+        );
+    endif;
+
+    $query->set('posts_per_page', 15);
+    $query->set('ignore_sticky_posts', true);
+    $query->set('post__not_in', !empty($queryFeatured->found_posts) ? array($queryFeatured->posts[0]->ID) : null);
+
+    return $query;
+});
