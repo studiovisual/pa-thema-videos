@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * videoLength Format video length in 'mm:ss'
+ *
+ * @param  int $post_id The post ID
+ * @return string Formated length string
+ */
 function videoLength(int $post_id = 0): string {
     $length = get_field('video_length', !empty($post_id) ? $post_id : get_the_ID());
 
