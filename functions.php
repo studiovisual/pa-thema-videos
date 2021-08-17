@@ -22,6 +22,8 @@ require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Leaders.class.php'
 require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_SliderHome.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Enqueue_Files.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Page_Lideres.php');
+require_once(dirname(__FILE__) . '/classes/controllers/PA_Util.class.php');
+require_once(dirname(__FILE__) . '/classes/PA_Helpers.php');
 
 add_filter('blade/view/paths', function ($paths) {
     $paths = (array)$paths;
@@ -32,16 +34,13 @@ add_filter('blade/view/paths', function ($paths) {
 });
 
 add_filter('template_include', function ($template) {
-
-
     $path = explode('/', $template);
     $template_chosen = basename(end($path), '.php');
     $template_chosen = str_replace('.blade', '', $template_chosen);
     $grandchild_template = dirname(__FILE__) . '/' . $template_chosen . '.blade.php';
 
-    if (file_exists($grandchild_template)) {
+    if(file_exists($grandchild_template))
         return blade($template_chosen);
-    }
 
     return $template;
 });
@@ -57,18 +56,22 @@ add_action('acf/save_post', function($post_id) {
     if(empty($url))
         return;
 
-    if(str_contains($url['host'], 'youtube')):
-        parse_str($url['query'], $params);
-
+    if(str_contains($url['host'], 'youtube') || str_contains($url['host'], 'youtu.be')):
         $host = 'youtube';
-        $id = $params['v'];
+
+        if(array_key_exists('query', $url)):
+            parse_str($url['query'], $params);
+            $id = $params['v'];
+        else:
+            $id = str_replace('/', '', $url['path']);
+        endif;
     elseif(str_contains($url['host'], 'vimeo')):
         $host = 'vimeo';
         $id = str_replace('/', '', $url['path']);
     endif;
 
     if(!empty($host) && !empty($id))
-        getVideoInfo($post_id, $host, $id);
+        getVideoLength($post_id, $host, $id);
 });
 
 /**
@@ -86,3 +89,6 @@ function getVideoLength(int $post_id, string $video_host, string $video_id): voi
     if(!empty($obj))
         update_field('video_length', $obj->time, $post_id);
 }
+
+
+require_once(dirname(__FILE__) . '/classes/PA_Directives.php');
