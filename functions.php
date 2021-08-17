@@ -15,6 +15,7 @@ define('THEME_IMGS', THEME_URI . 'assets/images/');
 
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Leaders.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_HomeFields.class.php');
+require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_PostFields.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Site-ministries.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Projects.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Leaders.class.php');
@@ -44,3 +45,44 @@ add_filter('template_include', function ($template) {
 
     return $template;
 });
+
+/**
+* Filter save post to get video length
+*/
+add_action('acf/save_post', function($post_id) {
+    $url = parse_url(get_field('video_url', $post_id, false));
+    $host = '';
+    $id = '';
+
+    if(empty($url))
+        return;
+
+    if(str_contains($url['host'], 'youtube')):
+        parse_str($url['query'], $params);
+
+        $host = 'youtube';
+        $id = $params['v'];
+    elseif(str_contains($url['host'], 'vimeo')):
+        $host = 'vimeo';
+        $id = str_replace('/', '', $url['path']);
+    endif;
+
+    if(!empty($host) && !empty($id))
+        getVideoInfo($post_id, $host, $id);
+});
+
+/**
+ * getVideoLength Get video length and save data
+ *
+ * @param  int    $post_id The post ID
+ * @param  string $video_host The video host
+ * @param  string $video_id The video ID
+ * @return void
+ */
+function getVideoLength(int $post_id, string $video_host, string $video_id): void {
+    $json = file_get_contents("https://api.feliz7play.com/v4/{$video_host}info?video_id={$video_id}");
+    $obj = json_decode($json);
+
+    if(!empty($obj))
+        update_field('video_length', $obj->time, $post_id);
+}
