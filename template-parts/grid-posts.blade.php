@@ -9,11 +9,13 @@
                         <figure class="figure">
                             <img src="{{ check_immg($post->ID, 'full') }}" class="figure-img img-fluid rounded m-0 w-100 h-100 object-cover" alt="{{ get_the_title($post->ID) }}">
 
-                            <div class="figure-caption position-absolute w-100 h-100 d-block">
-                                <span class="pa-video-time position-absolute px-2 rounded-1">
-                                    <i class="far fa-clock me-1" aria-hidden="true"></i> 3:40
-                                </span>
-                            </div>
+                            @hasfield('video_length', $post->ID)
+                                <div class="figure-caption position-absolute w-100 h-100 d-block">
+                                    <span class="pa-video-time position-absolute px-2 rounded-1">
+                                        <i class="far fa-clock me-1" aria-hidden="true"></i> @videolength($post->ID)
+                                    </span>
+                                </div>
+                            @endfield
                         </figure>	
                     </div>
 
