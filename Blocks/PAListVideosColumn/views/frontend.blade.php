@@ -29,9 +29,15 @@
 			</div>
 			@endforeach
 
-			@if ($enable_link AND $link)
-				<a href="{{ $link['url'] }}" class="pa-all-content" {{ empty(!$link['target']) ? 'target="'. $link['target'] .'"'  : '' }} title="{{ $link['title'] }}">Ver todas os vídeos</a>
-			@endif 
+			@notempty($enable_link)
+				<a 
+					href="{{ $link['url'] ?? '#' }}" 
+					target="{{ $link['target'] ?? '_self' }}"
+					class="pa-all-content"
+				>
+					{!! $link['title'] !!}
+				</a>
+			@endnotempty
 
 		@else
 
