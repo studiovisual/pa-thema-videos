@@ -5,9 +5,5 @@
         "psr-4": {
             "Blocks\\": "Blocks/"
         }
-    },
-    "require": {
-        "wordplate/acf": "^9.1",
-        "fiskhandlarn/blade": "^0.6.1"
     }
 }
