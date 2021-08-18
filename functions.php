@@ -90,5 +90,5 @@ function getVideoLength(int $post_id, string $video_host, string $video_id): voi
         update_field('video_length', $obj->time, $post_id);
 }
 
-
-require_once(dirname(__FILE__) . '/classes/PA_Directives.php');
+if(!is_admin())
+    require_once(dirname(__FILE__) . '/classes/PA_Directives.php');
