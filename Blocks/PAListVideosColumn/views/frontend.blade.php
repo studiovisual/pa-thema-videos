@@ -4,7 +4,7 @@
 	
 	<div class="pa-widget pa-w-list-posts col-md-4">
 			
-		@isset($items)
+		@notempty($items)
 
 			<h2 class="mb-4">{{ $title }}</h2>
 
@@ -30,12 +30,12 @@
 			@endforeach
 
 			@if ($enable_link AND $link)
-				<a href="{{ $link }}" class="pa-all-content">Ver todas os vídeos</a>
+				<a href="{{ $link }}" class="pa-all-content" target="_blank" title="{{ get_the_title($id) }}">Ver todas os vídeos</a>
 			@endif
 
 		@else
 
-		<p>Não foi encontrado nenhum post para esta seção.</p>
+			<p>Não foi encontrado nenhum post para esta seção.</p>
 
 		@endisset
 		

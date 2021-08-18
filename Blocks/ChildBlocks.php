@@ -19,8 +19,8 @@ class ChildBlocks
     public function registerChildBlocks(array $blocks): array
     {
         $newBlocks = [
-            // PAFeaturePost::class,
-            // PAListVideosColumn::class
+            PAFeaturePost::class,
+            PAListVideosColumn::class
         ];
 
         return array_merge($blocks, $newBlocks);
