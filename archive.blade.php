@@ -25,7 +25,7 @@
 
 				@if(is_active_sidebar('archive'))
 					<aside class="col-md-4 d-none d-xl-block">
-						{!! dynamic_sidebar('archive') !!}
+						@php(dynamic_sidebar('archive'))
 					</aside>
 				@endif
 			</div>
