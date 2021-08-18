@@ -6,6 +6,12 @@
 
 @section('content')
 
-{!! get_the_content() !!}
+<div class="pa-content py-5">
+	<div class="container">
+
+        {!! the_content() !!}
+
+    </div>
+</div>
 
 @endsection
