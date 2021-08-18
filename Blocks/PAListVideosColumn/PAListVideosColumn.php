@@ -66,7 +66,7 @@ class PAListVideosColumn extends Block
             'title'        => field('title'),
             'items'        => field('items'),
             'enable_link'  => field('enable_link'),
-            'link'         => field('link')['url'],
+            'link'         => field('link'),
         ];
     }
 }

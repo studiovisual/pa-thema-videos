@@ -30,7 +30,7 @@
 			@endforeach
 
 			@if ($enable_link AND $link)
-				<a href="{{ $link }}" class="pa-all-content" target="_blank" title="{{ get_the_title($id) }}">Ver todas os vídeos</a>
+				<a href="{{ $link['url'] }}" class="pa-all-content" {{ empty(!$link['target']) ? 'target="'. $link['target'] .'"'  : '' }} title="{{ $link['title'] }}">Ver todas os vídeos</a>
 			@endif 
 
 		@else
