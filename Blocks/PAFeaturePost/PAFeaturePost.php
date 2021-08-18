@@ -21,7 +21,6 @@ class PAFeaturePost extends Block
 			'title' 	  => 'IASD - Destaque',
 			'description' => '',
 			'category' 	  => 'pa-adventista',
-			'post_types'  => ['post', 'page'],
 			'keywords' 	  => ['featured'],
 			'icon' 		  => '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbtack" 
                                 class="svg-inline--fa fa-thumbtack fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" 
