@@ -4,7 +4,7 @@
 	
 	<div class="pa-widget pa-w-list-posts col-md-4">
 			
-		@notempty($items)
+		@notempty($items) 
 
 			<h2 class="mb-4">{{ $title }}</h2>
 

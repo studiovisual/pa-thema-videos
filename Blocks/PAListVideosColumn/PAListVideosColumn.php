@@ -21,7 +21,6 @@ class PAListVideosColumn extends Block
             'title'       => 'IASD - Vídeos Recomendados',
             'description' => 'Lista de vídeos sem thumb de destaque e em apenas uma coluna',
             'category'    => 'pa-adventista',
-            'post_types'  => ['post', 'page'],
             'keywords'    => ['list', 'video'],
             'icon'        => 'playlist-video',
         ]);
