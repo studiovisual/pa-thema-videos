@@ -31,7 +31,7 @@
 
 			@if ($enable_link AND $link)
 				<a href="{{ $link }}" class="pa-all-content" target="_blank" title="{{ get_the_title($id) }}">Ver todas os vídeos</a>
-			@endif
+			@endif 
 
 		@else
 
