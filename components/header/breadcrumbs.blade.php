@@ -1,4 +1,4 @@
-@if(is_home() && !is_front_page())
+@if(!is_front_page())
     <section class="pa-breadcrumb">
         <div class="container">
             <div class="row">
