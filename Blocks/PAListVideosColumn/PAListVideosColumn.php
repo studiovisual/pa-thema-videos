@@ -100,4 +100,5 @@ class PAListVideosColumn extends Block
             'link'         => get_field('link'),
         ];
     }
+    
 }

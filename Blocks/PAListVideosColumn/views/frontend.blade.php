@@ -7,7 +7,7 @@
 
 			@foreach ($items as $id)
 				<div class="card mb-2 mb-xl-4 border-0">
-					<a href="{{ get_the_permalink($id) }}" title="{{ get_the_title($id) }}"">
+					<a href="{{ get_the_permalink($id) }}" title="{{ get_the_title($id) }}">
 						<div class="row">
 							<div class="col-6">
 								<div class="ratio ratio-16x9">
