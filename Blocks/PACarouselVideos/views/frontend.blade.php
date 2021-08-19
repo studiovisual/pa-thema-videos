@@ -18,7 +18,7 @@
                 <div class="d-none d-xl-block" data-glide-el="controls">
                     <span class="fa-stack" data-glide-dir="&gt;">
                         <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="icon fas fa-arrow-right fa-stack-1x"></i>
+                        <i class="icon fas fa-arrow-right fa-stack-1x"></i> 
                     </span>
                 </div>
 
@@ -36,7 +36,7 @@
                                 <figure class="figure">
                                     <img src="{{ check_immg($id, 'full') }}" class="figure-img img-fluid  rounded m-0" alt="...">
                                     <div class="figure-caption position-absolute w-100 h-100 d-block">
-                                        <span class="pa-video-time position-absolute px-2 rounded-1"><i class="far fa-clock me-1"></i> 3:40</span>
+                                        <span class="pa-video-time position-absolute px-2 rounded-1"><i class="far fa-clock me-1"></i> @videolength($id)</span>
                                     </div>
                                 </figure>
                             </div>
