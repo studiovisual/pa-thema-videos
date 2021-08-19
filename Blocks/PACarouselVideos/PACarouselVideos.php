@@ -3,9 +3,11 @@
 namespace Blocks\PACarouselVideos;
 
 use Blocks\Block;
+use WordPlate\Acf\ConditionalLogic;
+use WordPlate\Acf\Fields\ButtonGroup;
+use WordPlate\Acf\Fields\Number;
 use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
-
 
 /**
  * Class PACarouselVideos
@@ -39,7 +41,15 @@ class PACarouselVideos extends Block
     {
 		return [
             Text::make('Título', 'title')
-                ->defaultValue('Título'),
+                ->defaultValue('IASD - Carrosel de Vídeos'),
+
+			ButtonGroup::make('Modo', 'mode')
+				->choices([
+					'manual'  => 'Manual',
+					'popular' => 'Mais vistos',
+					'latest' => 'Mais recentes',
+				])
+				->defaultValue('manual'),
 
             Relationship::make('Itens', 'items')
                 ->instructions('Selecione Vídeo')
@@ -51,6 +61,20 @@ class PACarouselVideos extends Block
                 ->elements(['featured_image'])
                 ->returnFormat('id') // id or object (default)
                 ->required()
+				->conditionalLogic([
+					ConditionalLogic::if('mode')->equals('manual')
+				]),
+
+			Number::make('Quantidade', 'items_count')
+				->min(1)
+				->required()
+				->defaultValue(4)
+				->conditionalLogic([
+					ConditionalLogic::if('mode')->equals('popular')
+				])
+				->conditionalLogic([
+					ConditionalLogic::if('mode')->equals('latest')
+				])
 		];
 	}
 
@@ -61,9 +85,26 @@ class PACarouselVideos extends Block
 	 */
 	public function with(): array
     {
+		$items = array();
+		$mode = get_field('mode');
+
+        if($mode == 'manual')
+            $items = get_field('items');
+		elseif($mode == 'latest')
+			$items = (new \WP_Query([
+				'fields'         => 'ids',
+				'posts_per_page' => get_field('items_count'),
+			]))->posts;
+        elseif(function_exists('get_popular_posts'))
+            $items = get_popular_posts([
+                'fields'         => 'ids',
+                'posts_per_page' => get_field('items_count'),
+            ])->posts;
+
 		return [
-			'title'	=> field('title'),
-			'items'	=> field('items'),
+			'title'	=> get_field('title'),
+			'items'	=> $items,
 		];
 	}
+
 }
