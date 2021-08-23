@@ -113,3 +113,25 @@ function linkToShare($post_id, $social) : void
             die();
     }
 }
+
+
+
+
+function getHeaderTitle($post_id = NULL){
+
+    global $wp_query;
+
+    $tax = $wp_query->get_queried_object();
+
+    if (is_home() || is_front_page()) //is home
+        return 'Divisão Sul-Americana';
+    
+    if (is_archive()) //is archive
+        return $tax->name;
+
+    if (is_single()) //is single
+        return getDepartment($post_id);
+    
+    return the_title(); //default
+
+}

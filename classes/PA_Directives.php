@@ -29,6 +29,12 @@ blade_directive('getDepartment', function($expression) {
 
 
 
+blade_directive('getHeaderTitle', function($expression) {
+    return "<?= getHeaderTitle({$expression}) ?>";
+});
+
+
+
 blade_directive('hasfield', function($expression) {
     if(Str::contains($expression, ',')):
         $expression = PA_Util::parse($expression);
