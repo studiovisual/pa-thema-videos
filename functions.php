@@ -4,14 +4,14 @@ if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
     require_once $composer;
 }
 
-new \Blocks\ChildBlocks();
-
 define('PARENT_THEME_URI', get_template_directory_uri() . '/');
 define('THEME_URI', get_stylesheet_directory_uri() . '/');
 define('THEME_DIR', get_stylesheet_directory() . '/');
 define('THEME_CSS', THEME_URI . 'assets/css/');
 define('THEME_JS', THEME_URI . 'assets/js/');
 define('THEME_IMGS', THEME_URI . 'assets/images/');
+
+new \Blocks\ChildBlocks();
 
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Leaders.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_HomeFields.class.php');
