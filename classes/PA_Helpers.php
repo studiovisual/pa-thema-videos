@@ -77,3 +77,39 @@ function getRelatedPostsByDepartment($post_id, $limit = 6) : array
 
     return 'Não foi possível localizar outros posts, porque não há nenhum departamento vinculado a este post.';
 }
+
+
+
+/**
+ * Create a share link
+ *
+ * @param string $post_id The post ID
+ * @param string $social A Social Network [Twitter, Facebook or Whatsapp].
+ * @return void
+ */
+function linkToShare($post_id, $social) : void
+{
+    $texto = get_the_excerpt($post_id);
+    $url = get_permalink($post_id);
+    $titulo = get_the_title($post_id);
+    $site = get_bloginfo('name');
+    $via = "IASD";
+    
+    switch($social) {
+        
+        case('twitter') :
+            echo "https://twitter.com/intent/tweet?text=" . urlencode(wp_html_excerpt($texto, (247 - strlen($via)), '...')) . "&via=" . $via . "&url=" . urlencode($url);
+            break;
+
+        case('facebook') :
+            echo "";
+            break;
+
+        case('whatsapp') :
+            echo "https://api.whatsapp.com/send?text=" . urlencode($titulo) . "%20-%20" . $site . "%20-%20" . urlencode($url);
+            break;
+
+        default :
+            die();
+    }
+}
