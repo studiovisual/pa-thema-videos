@@ -26,7 +26,7 @@
                 @endfield
             </span>
             <span class="mx-2">|</span>
-            <span>@getPrioritySeat($post->ID) </span>
+            <span>@getPrioritySeat($post->ID) </span> 
         </div>
     </div>
     <div class="col-md-3">

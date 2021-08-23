@@ -1,31 +1,35 @@
 {{-- Title --}}
-<div class="row">
+<div class="row mb-4">
     <div class="col-12">
         <h2>Vídeos Relacionados</h2>
     </div>
 </div>
 
 {{-- Vídeos --}}
-<div class="row">
+<div class="pa-blog-itens mb-4">
+    <h2 class="mb-4">{{ isset($title) ? $title : single_term_title() }}</h2>
+    
+    <div class="row pa-w-list-videos">
+        @foreach (getRelatedPostsByDepartment($post->ID) as $post)
+            <div class="pa-blog-item mb-4 mb-md-4 border-0 col-12 col-md-4 position-relative">
+                <div class="ratio ratio-16x9 mb-2">
+                    <figure class="figure">
+                        <img src="{{ check_immg($post->ID, 'full') }}" class="figure-img img-fluid rounded m-0 w-100 h-100 object-cover" alt="{{ get_the_title($post->ID) }}">
 
-    @foreach (getRelatedPostsByDepartment($post->ID) as $post)
-
-    {{-- <pre><?php var_dump($item) ?></pre> --}}
-
-        <div class="col-4 mb-4">
-            <a href="{{ get_the_permalink($post->ID) }}" title="{{ get_the_title($post->ID) }}">
-                <div class="ratio ratio-16x9">
-                    <figure class="figure m-xl-0 w-100">
-                        <img src="{{ check_immg($post->ID, 'full') }}" class="figure-img img-fluid m-0 rounded w-100 h-100 object-cover" alt="{{ get_the_title($post->ID) }}">
-                        
-                        <div class="figure-caption position-absolute w-100 h-100 d-block">
-                            <i class="pa-play far fa-play-circle position-absolute" aria-hidden="true"></i>
-                        </div>
-                    </figure>
+                        @hasfield('video_length', $post->ID)
+                            <div class="figure-caption position-absolute w-100 h-100 d-block">
+                                <span class="pa-video-time position-absolute px-2 rounded-1">
+                                    <i class="far fa-clock me-1" aria-hidden="true"></i> @videolength($post->ID)
+                                </span>
+                            </div>
+                        @endfield
+                    </figure>	
                 </div>
-            </a>
-        </div>
-        
-    @endforeach
 
+                <a class="stretched-link" href="{{ get_the_permalink($post->ID) }}" title="{{ get_the_title($post->ID) }}">
+                    <h3 class="card-title fw-bold h6 pa-truncate-2">{!! get_the_title($post->ID) !!}</h3>
+                </a>
+            </div>
+        @endforeach
+    </div>
 </div>

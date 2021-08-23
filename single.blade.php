@@ -22,11 +22,6 @@
                 {{-- Post relacionados --}}
                 @include('template-parts.single.related-posts')
 
-                {{-- 
-                    Ministério Jovem 
-                    Varificar com cliente se este bloco estará ativo
-                --}}
-
             </section>
 
 
