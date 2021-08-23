@@ -1,0 +1,30 @@
+/** Title */
+.single-title {
+    font: normal bold 20px/26px 'Noto Sans';
+    color: var(--pa-color-default);
+}
+
+/** Vídeo Responsivo*/
+.embed-container { 
+    position: relative; 
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+} 
+
+.embed-container {
+    iframe, object, embed { 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/** Separators */
+.separator {
+    margin: 40px 0;
+}
+
