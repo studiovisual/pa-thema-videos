@@ -1,6 +1,6 @@
 {{-- Player --}}
 @hasfield('video_url', $post->ID)
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-12">
             <div class="embed-container">
                 @hasfield('video_url', $post->ID)
@@ -12,10 +12,11 @@
 @endfield
 
 <div class="row my-4">
-    <div class="col-md-11 d-flex flex-column align-items-start">
+
+    <div class="col-md-7 d-flex flex-column align-items-start">
         
         {{-- Title --}}
-        <h1 class="single-title mt-3 mb-2">{{ the_title() }}</h1>
+        <h1 class="single-title mb-2">{{ the_title() }}</h1>
 
         {{-- Tempo do vídeo --}}
         <div class="figure-caption d-flex align-items-center justify-content-start">
@@ -29,7 +30,35 @@
             <span>@getPrioritySeat($post->ID) </span> 
         </div>
     </div>
-    <div class="col-md-3">
-        {{-- Espaço destinado ao botão de compartilhar --}}
+    
+    {{-- Shere --}}
+    <div class="col-md-5">
+        <div class="pa-share">
+            <ul class="list-inline">
+                <li class="list-inline-item">Compartilhar: </li>
+
+                {{-- Twitter --}}
+                <li class="list-inline-item">
+                    <a rel="canonical" target="_blank" href="@php(linkToShare($post->ID, 'twitter'))">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+
+                {{-- Facebook --}}
+                <li class="list-inline-item">
+                    <a rel="canonical" target="_blank" href="@php(linkToShare($post->ID, 'facebook'))">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+
+                {{-- Whatssapp --}}
+                <li class="list-inline-item">
+                    <a rel="canonical" target="_blank" href="@php(linkToShare($post->ID, 'whatsapp'))" >
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+            
+            </ul>
+        </div>
     </div>
 </div>
