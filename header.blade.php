@@ -1,23 +1,21 @@
 <!doctype html>
-<html {{ language_attributes() }}>
+    <html {{ language_attributes() }}>
 
-<head>
+    <head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {!! wp_head() !!}
+        {!! wp_head() !!}
 
-</head>
+    </head>
 
-<body {{ body_class(get_field('departamento', 'option') ? : "") }}>
+    <body {{ body_class(get_field('departamento', 'option') ? : "") }}>
 
-    <div class="pa-creation-grid d-flex">
-        <div class="pa-content-column flex-grow-1 d-block">
+        <div class="pa-creation-grid d-flex">
+            <div class="pa-content-column flex-grow-1 d-block">
 
-        @include('components.menu.main-menu')
-        @include('components.header.title')
-        @include('components.header.breadcrumbs')
-
+            @include('components.menu.main-menu')
+            @include('components.header.title')
 

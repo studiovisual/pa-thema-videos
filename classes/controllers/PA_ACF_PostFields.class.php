@@ -16,9 +16,7 @@ class PaAcfPostFields {
             'style' => 'default',
             'fields' => [
                 Oembed::make('Vídeo', 'video_url')
-                    ->required()
-                    ->width(776)
-                    ->height(439),
+                    ->required(),
                 Number::make('Duração', 'video_length')
                     ->instructions('Será obtido ao salvar o post')
                     ->readOnly(),
