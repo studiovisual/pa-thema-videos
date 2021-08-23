@@ -1,6 +1,6 @@
 <?php
 
-/**
+/** 
  * videoLength Format video length in 'mm:ss'
  *
  * @param  int $post_id The post ID
