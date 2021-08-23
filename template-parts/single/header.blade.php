@@ -39,21 +39,21 @@
 
                 {{-- Twitter --}}
                 <li class="list-inline-item">
-                    <a rel="canonical" target="_blank" href="@php(linkToShare($post->ID, 'twitter'))">
+                    <a rel="canonical" target="_blank" href="{{ linkToShare($post->ID, 'twitter') }}">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
 
                 {{-- Facebook --}}
                 <li class="list-inline-item">
-                    <a rel="canonical" target="_blank" href="@php(linkToShare($post->ID, 'facebook'))">
+                    <a rel="canonical" target="_blank" href="{{ linkToShare($post->ID, 'facebook') }}">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
 
                 {{-- Whatssapp --}}
                 <li class="list-inline-item">
-                    <a rel="canonical" target="_blank" href="@php(linkToShare($post->ID, 'whatsapp'))" >
+                    <a rel="canonical" target="_blank" href="{{ linkToShare($post->ID, 'whatsapp') }}">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </li>
