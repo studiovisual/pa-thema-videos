@@ -84,6 +84,9 @@ add_action('pre_get_posts', function($query) {
 * Filter save post to get video length
 */
 add_action('acf/save_post', function($post_id) {
+    if(get_post_type($post_id) != 'post')
+        return;
+
     $url = parse_url(get_field('video_url', $post_id, false));
     $host = '';
     $id = '';
