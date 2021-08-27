@@ -11,6 +11,10 @@ define('THEME_CSS', THEME_URI . 'assets/css/');
 define('THEME_JS', THEME_URI . 'assets/js/');
 define('THEME_IMGS', THEME_URI . 'assets/images/');
 
+add_filter('popular-posts/settings/url', function() {
+    return THEME_URI . 'vendor/lordealeister/popular-posts/';
+});
+
 new \Blocks\ChildBlocks();
 
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Leaders.class.php');

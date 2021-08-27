@@ -75,7 +75,7 @@ function getRelatedPostsByDepartment($post_id, $limit = 6) : array
         return get_posts($args);
     }
 
-    return 'Não foi possível localizar outros posts, porque não há nenhum departamento vinculado a este post.';
+    return array();
 }
 
 

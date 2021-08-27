@@ -1,9 +1,33 @@
 {
     "name": "igrejaadventista/pa-thema-videos",
     "type": "wordpress-theme",
+    "repositories":[
+		{
+			"type":"composer",
+			"url":"https://wpackagist.org"
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "lordealeister/popular-posts",
+				"type": "wordpress-plugin",
+				"version": "dev-release/1.1.0",
+				"dist": {
+					"url": "https://github.com/lordealeister/popular-posts/releases/download/1.1.0/popular-posts-1.1.0.zip",
+					"type": "zip"
+				}
+			}
+		}
+	],
     "autoload": {
         "psr-4": {
             "Blocks\\": "Blocks/"
-        }
-    }
+        },
+        "files": [
+			"vendor/lordealeister/popular-posts/popular-posts.php"
+        ]
+    },
+    "require": {
+		"lordealeister/popular-posts": "dev-release/1.1.0"
+	}
 }
