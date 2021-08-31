@@ -1,8 +1,7 @@
 <?php
 
-if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
+if(file_exists($composer = __DIR__ . '/vendor/autoload.php'))
     require_once $composer;
-}
 
 define('PARENT_THEME_URI', get_template_directory_uri() . '/');
 define('THEME_URI', get_stylesheet_directory_uri() . '/');
@@ -11,12 +10,7 @@ define('THEME_CSS', THEME_URI . 'assets/css/');
 define('THEME_JS', THEME_URI . 'assets/js/');
 define('THEME_IMGS', THEME_URI . 'assets/images/');
 
-add_filter('popular-posts/settings/url', function() {
-    return THEME_URI . 'vendor/lordealeister/popular-posts/';
-});
-
-new \Blocks\ChildBlocks();
-
+require_once(dirname(__FILE__) . '/vendor/lordealeister/popular-posts/popular-posts.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Leaders.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_HomeFields.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_PostFields.class.php');
@@ -28,6 +22,12 @@ require_once(dirname(__FILE__) . '/classes/controllers/PA_Enqueue_Files.class.ph
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Page_Lideres.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Util.class.php');
 require_once(dirname(__FILE__) . '/classes/PA_Helpers.php');
+
+new \Blocks\ChildBlocks;
+
+add_filter('popular-posts/settings/url', function() {
+    return THEME_URI . 'vendor/lordealeister/popular-posts/';
+});
 
 add_filter('blade/view/paths', function ($paths) {
     $paths = (array)$paths;
