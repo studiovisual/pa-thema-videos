@@ -22,7 +22,10 @@
     "autoload": {
         "psr-4": {
             "Blocks\\": "Blocks/"
-        }
+        },
+        "files": [
+			"vendor/lordealeister/popular-posts/popular-posts.php"
+        ]
     },
     "require": {
 		"lordealeister/popular-posts": "dev-release/1.1.0"
