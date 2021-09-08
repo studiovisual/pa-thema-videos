@@ -15,6 +15,11 @@
 				"dist": {
 					"url": "https://github.com/lordealeister/popular-posts/releases/download/1.1.0/popular-posts-1.1.0.zip",
 					"type": "zip"
+				},
+				"autoload": {
+					"files": [
+						"popular-posts.php"
+					]
 				}
 			}
 		}
@@ -22,10 +27,7 @@
     "autoload": {
         "psr-4": {
             "Blocks\\": "Blocks/"
-        },
-        "files": [
-			"vendor/lordealeister/popular-posts/popular-posts.php"
-        ]
+        }
     },
     "require": {
 		"lordealeister/popular-posts": "dev-release/1.1.0"
