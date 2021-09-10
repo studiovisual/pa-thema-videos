@@ -28,6 +28,15 @@ require_once(dirname(__FILE__) . '/classes/controllers/PA_Page_Lideres.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Util.class.php');
 require_once(dirname(__FILE__) . '/classes/PA_Helpers.php');
 
+/**
+* Remove unused taxonomies
+*/
+add_action('wp_loaded', function() {
+    unregister_taxonomy_for_object_type('xtt-pa-colecoes', 'post');
+    unregister_taxonomy_for_object_type('post_tag', 'post');
+    unregister_taxonomy_for_object_type('category', 'post');
+});
+
 add_filter('blade/view/paths', function ($paths) {
     $paths = (array)$paths;
 
