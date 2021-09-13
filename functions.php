@@ -52,7 +52,7 @@ add_filter('template_include', function ($template) {
     $grandchild_template = dirname(__FILE__) . '/' . $template_chosen . '.blade.php';
 
     if(file_exists($grandchild_template)):
-        echo blade($template_chosen);
+        blade($template_chosen);
         return '';
     endif;
 
