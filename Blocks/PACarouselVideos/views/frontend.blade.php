@@ -30,7 +30,7 @@
                         @foreach($items as $id)
                             <div class="glide__slide">
                                 <a href="{{ get_the_permalink($id) }}" title="{{ get_the_title($id) }}">
-                                    <div class="ratio ratio-16x9">
+                                    <div class="ratio ratio-16x9 mb-2">
                                         <figure class="figure">
                                             <img src="{{ check_immg($id, 'full') }}" class="figure-img img-fluid rounded m-0" alt="{{ get_the_title($id) }}">
                                             
