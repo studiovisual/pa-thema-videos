@@ -51,8 +51,10 @@ add_filter('template_include', function ($template) {
     $template_chosen = str_replace('.blade', '', $template_chosen);
     $grandchild_template = dirname(__FILE__) . '/' . $template_chosen . '.blade.php';
 
-    if(file_exists($grandchild_template))
-        return blade($template_chosen);
+    if(file_exists($grandchild_template)):
+        echo blade($template_chosen);
+        return '';
+    endif;
 
     return $template;
 });
