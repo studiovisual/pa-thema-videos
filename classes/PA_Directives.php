@@ -24,7 +24,7 @@ blade_directive('getDepartment', function($expression) {
     if(empty($expression))
         return "o ID do post é obrigatório.";
 
-    return "<?= getDepartment({$expression}) ?>";
+    return "<?= getDepartment({$expression})->name ?>";
 });
 
 

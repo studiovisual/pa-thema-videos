@@ -1,6 +1,6 @@
 @notempty($posts)
     <div class="pa-blog-itens mb-4">
-        <h2 class="mb-4">{{ isset($title) ? $title : single_term_title() }}</h2>
+        {{-- <h2 class="mb-4">{{ isset($title) ? $title : single_term_title() }}</h2> --}}
         
         <div class="row pa-w-list-videos">
             @foreach($posts as $post)

@@ -14,7 +14,7 @@
 					])
 
 					@includeWhen($wp_query->found_posts >= 1, 'template-parts.grid-posts', [
-						'title' => single_term_title('', false),
+						// 'title' => single_term_title('', false),
 						'posts' => $wp_query->posts,
 					])
 					

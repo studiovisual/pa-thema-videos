@@ -137,19 +137,3 @@ add_action('acf/save_post', function($post_id) {
     if(!empty($host) && !empty($id))
         getVideoLength($post_id, $host, $id);
 });
-
-/**
- * getVideoLength Get video length and save data
- *
- * @param  int    $post_id The post ID
- * @param  string $video_host The video host
- * @param  string $video_id The video ID
- * @return void
- */
-function getVideoLength(int $post_id, string $video_host, string $video_id): void {
-    $json = file_get_contents("https://api.feliz7play.com/v4/{$video_host}info?video_id={$video_id}");
-    $obj = json_decode($json);
-
-    if(!empty($obj))
-        update_field('video_length', $obj->time, $post_id);
-}
