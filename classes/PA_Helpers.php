@@ -62,14 +62,15 @@ function getRelatedPosts($post_id, $limit = 6) : array
     if ($term = get_the_terms($post_id, 'xtt-pa-projetos')) {
 
         $args = array(
-            'post_type' => 'post',
-            'tax_query' => array(
+            'post_type'      => 'post',
+            'post__not_in'   => array($post_id),
+            'posts_per_page' => $limit,
+            'tax_query'      => array(
                 array(
                     'taxonomy' => 'xtt-pa-projetos',
                     'terms'    => $term[0]->name,
                 ),
             ),
-            'posts_per_page' => $limit
         );
         
         return get_posts($args);
@@ -102,7 +103,7 @@ function linkToShare($post_id, $social) : void
             break;
 
         case('facebook') :
-            echo "";
+            echo "https://www.facebook.com/sharer/sharer.php?u=" . urlencode($url);
             break;
 
         case('whatsapp') :

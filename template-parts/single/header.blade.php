@@ -12,7 +12,7 @@
 @endfield
 
 <div class="row my-4">
-    <div class="col-md-7 d-flex flex-column align-items-start">
+    <div class="col d-flex flex-column align-items-start">
         {{-- Title --}}
         <h1 class="single-title mb-2">{{ the_title() }}</h1>
 
@@ -33,7 +33,7 @@
     </div>
     
     {{-- Shere --}}
-    <div class="col-md-5">
+    <div class="col-auto">
         <div class="pa-share">
             <ul class="list-inline">
                 <li class="list-inline-item">Compartilhar: </li>
