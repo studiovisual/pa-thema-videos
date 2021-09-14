@@ -63,16 +63,23 @@ add_filter('template_include', function ($template) {
 * Modify category query
 */
 add_action('pre_get_posts', function($query) {
-    if(is_admin() || !is_category() || !$query->is_main_query())
+    if(is_admin() || !is_tax() || !$query->is_main_query())
         return $query;
 
     global $queryFeatured;
+    $object = get_queried_object();
+    
     $queryFeatured = new WP_Query(
         array(
             'posts_per_page' => 1,
             'post_status'	 => 'publish',
-            'cat'			 => get_query_var('cat'),
             'post__in'       => get_option('sticky_posts'),
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => $object->taxonomy,
+                    'terms'    => array($object->term_id),
+                ),
+            ),
         )
     );
 
@@ -81,8 +88,13 @@ add_action('pre_get_posts', function($query) {
             array(
                 'posts_per_page' 	   => 1,
                 'post_status'	 	   => 'publish',
-                'cat'			 	   => get_query_var('cat'),
                 'ignore_sticky_posts ' => true,
+                'tax_query'            => array(
+                    array(
+                        'taxonomy' => $object->taxonomy,
+                        'terms'    => array($object->term_id),
+                    ),
+                ),
             )
         );
     endif;
