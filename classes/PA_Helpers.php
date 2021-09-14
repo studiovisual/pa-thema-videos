@@ -51,21 +51,21 @@ function getDepartment($post_id) : string
 
 
 /**
- * Search the related posts by department
+ * Search the related posts
  *
  * @param string $post_id The post ID
  * @param int $limit Maximum posts per query. Default = 6
  * @return array
  */
-function getRelatedPostsByDepartment($post_id, $limit = 6) : array
+function getRelatedPosts($post_id, $limit = 6) : array
 {
-    if ($term = get_the_terms($post_id, 'xtt-pa-departamentos')) {
+    if ($term = get_the_terms($post_id, 'xtt-pa-projetos')) {
 
         $args = array(
             'post_type' => 'post',
             'tax_query' => array(
                 array(
-                    'taxonomy' => 'xtt-pa-departamentos',
+                    'taxonomy' => 'xtt-pa-projetos',
                     'terms'    => $term[0]->name,
                 ),
             ),

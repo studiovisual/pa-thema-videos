@@ -10,7 +10,7 @@
     <h2 class="mb-4">{{ isset($title) ? $title : single_term_title() }}</h2>
     
     <div class="row pa-w-list-videos">
-        @foreach (getRelatedPostsByDepartment($post->ID) as $post)
+        @foreach(getRelatedPosts(get_the_ID()) as $post)
             <div class="pa-blog-item mb-4 mb-md-4 border-0 col-12 col-md-4 position-relative">
                 <div class="ratio ratio-16x9 mb-2">
                     <figure class="figure">

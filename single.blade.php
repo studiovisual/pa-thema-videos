@@ -1,38 +1,30 @@
-@php global $post, $wp_query @endphp
-
 @extends('layouts.app')
 
 @section('content')
+    <div class="pa-content py-5">
+        <div class="container">
+            <div class="row row-cols-auto">
+                {{-- Main --}}
+                <section class="col-12{{ is_active_sidebar('single') ? ' col-md-8' : '' }}">          
+                    {{-- Post de destaque --}}
+                    @include('template-parts.single.header')
 
-<div class="pa-content py-5">
-    <div class="container">
-        <div class="row row-cols-auto">
+                    {{-- Conteúdo do post --}}
+                    {!! the_content() !!}
 
-            {{-- Main --}}
-            <section class="col-12{{ is_active_sidebar('single') ? ' col-md-8' : '' }}">
-                
-                {{-- Post de destaque --}}
-                @include('template-parts.single.header')
+                    <hr class="separator">
 
-                {{-- Conteúdo do post --}}
-                {!! the_content() !!}
+                    {{-- Post relacionados --}}
+                    @include('template-parts.single.related-posts')
+                </section>
 
-                <hr class="separator">
-
-                {{-- Post relacionados --}}
-                @include('template-parts.single.related-posts')
-
-            </section>
-
-
-            {{-- Sidebar --}}
-            @if(is_active_sidebar('single'))
-                <aside class="col-md-4 d-none d-xl-block">
-                    @php(dynamic_sidebar('single'))
-                </aside>
-            @endif
+                {{-- Sidebar --}}
+                @if(is_active_sidebar('single'))
+                    <aside class="col-md-4 d-none d-xl-block">
+                        @php(dynamic_sidebar('single'))
+                    </aside>
+                @endif
+            </div>
         </div>
     </div>
-</div>
-
 @endsection
