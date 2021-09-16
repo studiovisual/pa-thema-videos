@@ -104,9 +104,6 @@ function linkToShare($post_id, $social): void {
 }
 
 function getHeaderTitle($post_id = NULL) {
-    if(is_home() || is_front_page()) //is home
-        return 'Divisão Sul-Americana';
-
     if(is_archive()) //is archive
         return get_taxonomy(get_queried_object()->taxonomy)->label . ' | ' . get_queried_object()->name;
     elseif(is_single()) //is single
