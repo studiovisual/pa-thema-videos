@@ -1,7 +1,7 @@
 @if (is_admin())
     <img class="img-preview" src="{{ get_stylesheet_directory_uri() }}/Blocks/PAFeaturePost/preview.png" />
 @else
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <div class="pa-blog-itens mb-5">    
             <h2 class="mb-4">{{ $title }}</h2>
 
