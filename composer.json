@@ -11,9 +11,9 @@
 			"package": {
 				"name": "lordealeister/popular-posts",
 				"type": "wordpress-plugin",
-				"version": "dev-release/1.2.0",
+				"version": "dev-release/1.2.1",
 				"dist": {
-					"url": "https://github.com/lordealeister/popular-posts/releases/download/1.2.0/popular-posts-1.2.0.zip",
+					"url": "https://github.com/lordealeister/popular-posts/releases/download/1.2.1/popular-posts-1.2.1.zip",
 					"type": "zip"
 				},
 				"autoload": {
@@ -30,6 +30,6 @@
         }
     },
     "require": {
-		"lordealeister/popular-posts": "dev-release/1.2.0"
+		"lordealeister/popular-posts": "dev-release/1.2.1"
 	}
 }
