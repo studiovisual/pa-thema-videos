@@ -131,7 +131,8 @@ add_action('acf/save_post', function($post_id) {
         endif;
     elseif(str_contains($url['host'], 'vimeo')):
         $host = 'vimeo';
-        $id = str_replace('/', '', $url['path']);
+        $parts = explode('/', $url['path']);
+        $id = $parts[count($parts) - 1];
     endif;
 
     if(!empty($host) && !empty($id))
