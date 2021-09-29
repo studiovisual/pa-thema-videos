@@ -2,4 +2,11 @@
   .img-container {
     width: 46.8%;
   }
+
+  @media(min-width: 768px) and (max-width: 991px) {
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
 }
