@@ -106,12 +106,14 @@ function linkToShare($post_id, $social): void {
 }
 
 function getHeaderTitle($post_id = NULL) {
-    if(is_archive()) //is archive
-        return get_taxonomy(get_queried_object()->taxonomy)->label . ' | ' . get_queried_object()->name;
-    elseif(is_single()) //is single
-        return get_taxonomy('xtt-pa-departamentos')->label . ' | ' . getDepartment($post_id)->name;
-    
-    return the_title(); //default
+  if(is_archive()) //is archive
+    $title = get_taxonomy(get_queried_object()->taxonomy)->label . ' | ' . get_queried_object()->name;
+  elseif(is_single()) //is single
+    $title = get_taxonomy('xtt-pa-departamentos')->label . ' | ' . getDepartment($post_id)->name;
+  
+  $title = get_the_title(); //default
+
+  return str_replace('-', '&#8209;', $title);
 }
 
 /**
