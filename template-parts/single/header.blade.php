@@ -2,11 +2,17 @@
 @hasfield('video_url', get_the_ID())
     <div class="row mb-3">
         <div class="col-12">
-            <div class="embed-container">
-                @hasfield('video_url', get_the_ID())
-                    {!! get_field('video_url', get_the_ID()) !!}
-                @endfield
-            </div>
+          @hasfield('video_url', get_the_ID())
+            @php $url = get_field('video_url', get_the_ID(), false); @endphp
+
+            @if(str_contains($url, 'vimeo'))
+              {!! wp_oembed_get(get_field('video_url', get_the_ID(), false)) !!}  
+            @else
+              <div class="embed-container">
+                {!! get_field('video_url', get_the_ID()) !!}  
+              </div>
+            @endif
+          @endfield
         </div>
     </div>
 @endfield
