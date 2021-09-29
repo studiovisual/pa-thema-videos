@@ -12,7 +12,7 @@
 @endfield
 
 <div class="row my-4">
-    <div class="col d-flex flex-column align-items-start">
+    <div class="col-md mb-4 mb-md-0 d-flex flex-column align-items-start">
         {{-- Title --}}
         <h1 class="single-title mb-2">{{ the_title() }}</h1>
 
