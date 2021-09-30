@@ -113,7 +113,15 @@ function getHeaderTitle($post_id = NULL) {
   
   $title = get_the_title(); //default
 
-  return str_replace('-', '&#8209;', $title);
+  $words = explode(' ', $title);
+  $regex = '/^([a-z]+(?:-[a-z]+)?)$/i';
+
+  foreach($words as $word):
+    if(preg_match($regex, $word, $m))
+      $title = str_replace($word, "<span>{$word}</span>", $title);
+  endforeach;
+
+  return $title;
 }
 
 /**
