@@ -1,0 +1,35 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "9a8945f1618149cbc747e59c2a7337b8",
+    "packages": [
+        {
+            "name": "lordealeister/popular-posts",
+            "version": "dev-release/1.2.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/lordealeister/popular-posts/releases/download/1.2.3/popular-posts-1.2.3.zip"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "files": [
+                    "popular-posts.php"
+                ]
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "lordealeister/popular-posts": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}
