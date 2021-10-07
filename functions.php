@@ -19,12 +19,12 @@ add_filter('popular-posts/settings/url', function() {
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Leaders.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_HomeFields.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_PostFields.class.php');
-require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Site-ministries.class.php');
-require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Projects.class.php');
-require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Leaders.class.php');
-require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_SliderHome.class.php');
+// require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Site-ministries.class.php');
+// require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Projects.class.php');
+// require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Leaders.class.php');
+// require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_SliderHome.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Enqueue_Files.class.php');
-require_once(dirname(__FILE__) . '/classes/controllers/PA_Page_Lideres.php');
+// require_once(dirname(__FILE__) . '/classes/controllers/PA_Page_Lideres.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Util.class.php');
 require_once(dirname(__FILE__) . '/classes/PA_Helpers.php');
 
