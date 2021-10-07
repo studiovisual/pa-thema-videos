@@ -46,6 +46,7 @@ class PAListVideosColumn extends Block
                     ->choices([
                         'manual'  => 'Manual',
                         'popular' => 'Mais vistos',
+                        'latest' => 'Mais recentes'
                     ])
                     ->defaultValue('manual'),
 
@@ -70,7 +71,10 @@ class PAListVideosColumn extends Block
                     ->defaultValue(4)
                     ->conditionalLogic([
                         ConditionalLogic::if('mode')->equals('popular')
-                    ]),
+                    ])
+                    ->conditionalLogic([
+                        ConditionalLogic::if('mode')->equals('latest')
+                    ])
             ],
             MoreContent::make()
         );
@@ -84,9 +88,15 @@ class PAListVideosColumn extends Block
     public function with(): array
     {
         $items = array();
+        $mode = get_field('mode');
 
-        if(get_field('mode') == 'manual')
+        if($mode == 'manual')
             $items = get_field('items');
+        elseif($mode == 'latest')
+			$items = (new \WP_Query([
+				'fields'         => 'ids',
+				'posts_per_page' => get_field('items_count'),
+			]))->posts;
         elseif(function_exists('get_popular_posts'))
             $items = get_popular_posts([
                 'fields'         => 'ids',

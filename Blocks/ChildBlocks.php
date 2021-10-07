@@ -33,5 +33,4 @@ class ChildBlocks
     {
         wp_enqueue_style('child-blocks-stylesheet', THEME_URI . 'Blocks/assets/styles/blocks.css', array(), \wp_get_theme()->get('Version'), 'all');
     }
-
 }
