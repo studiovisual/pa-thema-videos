@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 {{-- Main --}}
-                <section class="col-8{{ is_active_sidebar('single') ? ' col-xl-8' : '' }}">          
+                <section class="col-auto col-md-8{{ is_active_sidebar('single') ? ' col-xl-8' : '' }}">          
                     {{-- Post de destaque --}}
                     @include('template-parts.single.header')
 

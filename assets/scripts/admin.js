@@ -1,13 +1,20 @@
 wp.domReady( function () {
-    wp.blocks.unregisterBlockType( 'acf/p-a-magazines' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-list-news' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-carousel-downloads' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-list-downloads' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-carousel-ministry' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-list-buttons' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-list-items' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-list-icons' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-carousel-feature' );
-    wp.blocks.unregisterBlockType( 'acf/p-a-list-videos' );    
-} );
+    let blocks = [
+        'acf/p-a-magazines', 
+        'acf/p-a-list-news',
+        'acf/p-a-carousel-downloads',
+        'acf/p-a-list-downloads',
+        'acf/p-a-carousel-ministry',
+        'acf/p-a-list-buttons',
+        'acf/p-a-list-items',
+        'acf/p-a-list-icons',
+        'acf/p-a-carousel-feature',
+        'acf/p-a-list-videos'
+    ];
 
+    blocks.forEach( unregisterBlocks );
+
+    function unregisterBlocks( block ) {
+        wp.blocks.unregisterBlockType( block ); 
+    }
+});

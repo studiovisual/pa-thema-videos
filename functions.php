@@ -16,30 +16,11 @@ add_filter('popular-posts/settings/url', function() {
     return THEME_URI . 'vendor/lordealeister/popular-posts/';
 });
 
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Leaders.class.php');
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_HomeFields.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_PostFields.class.php');
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_Site-ministries.class.php');
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Projects.class.php');
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_Leaders.class.php');
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_CPT_SliderHome.class.php');
-require_once(dirname(__FILE__) . '/classes/controllers/PA_Enqueue_Files.class.php');
-// require_once(dirname(__FILE__) . '/classes/controllers/PA_Page_Lideres.php');
+require_once(dirname(__FILE__) . '/classes/controllers/PA_EnqueueFiles.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_Util.class.php');
+require_once(dirname(__FILE__) . '/classes/controllers/PA_RewriteRules.class.php');
 require_once(dirname(__FILE__) . '/classes/PA_Helpers.php');
-
-/**
-* Remove unused taxonomies
-*/
-add_action('init', function() {
-    // unregister_taxonomy_for_object_type('xtt-pa-colecoes', 'post');
-    unregister_taxonomy_for_object_type('post_tag', 'post');
-    unregister_taxonomy_for_object_type('category', 'post');
-    unregister_taxonomy_for_object_type('xtt-pa-regiao', 'post');
-    
-    
-    // Desabilita blocos do tema
-});
 
 add_filter('blade/view/paths', function ($paths) {
     $paths = (array)$paths;
@@ -143,66 +124,6 @@ add_action('acf/save_post', function($post_id) {
         getVideoLength($post_id, $host, $id);
 });
 
-
-
-function InitPostUrls($permalink, $post, $leavename) {
-
-    if($post->post_type == 'post') {
-        // $permalink = '/editoria/%'.PATaxonomias::TAXONOMY_EDITORIAS.'%/%postname%/';
-        $permalink = '/editoria/%xtt-pa-editorias%/%postname%/';
-    }
-
-    return $permalink;
-}
-function PostRewriteRules($bool, $object = null, $extra_query_vars = null) {
-    $rewrite_rule = 'editoria/([^/]+)/([^/]+)/?$';
-    $rewrite_redirect = 'index.php?name=$matches[2]&post_type=post&xtt-pa-editorias=$matches[1]';
-    add_rewrite_rule( $rewrite_rule, $rewrite_redirect);
-
-    flush_rewrite_rules();
-
-    return $bool;
-}
-
-function ReplacePostUrls($permalink, $post, $leavename) {
-    if($post->post_type == 'post') {
-
-        $args = array(
-            'object_type' => array(
-                'post',
-            ),
-        );
-        $output = 'names'; // or objects
-        $operator = 'and'; // 'and' or 'or'
-        $taxonomias = get_taxonomies($args, $output, $operator);
-
-        $terms = wp_get_object_terms($post->ID, $taxonomias);
-        foreach($terms as $term) {
-            $permalink = str_replace('%'.$term->taxonomy.'%', $term->slug, $permalink);
-        }
-        foreach($taxonomias as $taxonomia)
-            $permalink = str_replace('/%'.$taxonomia.'%', '', $permalink);
-    }
-
-    return $permalink;
-}
-
-add_filter( 'do_parse_request', 'PostRewriteRules', 3);
-add_action( 'pre_post_link', 'InitPostUrls', 3, 3);
-add_action( 'pre_post_link', 'ReplacePostUrls', 100, 3);
-
-
-function enqueueAssets() {
-    wp_enqueue_script(
-        'adventistas-admin2', 
-        get_stylesheet_directory_uri() . '/assets/scripts/admin.js', 
-        array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' )
-    );
-}
-
-add_action('enqueue_block_editor_assets', 'enqueueAssets');
-
-
 add_filter('acf/fields/relationship/query', 'my_acf_fields_relationship_query', 10, 3);
 function my_acf_fields_relationship_query( $args, $field, $post_id ) {
 
@@ -210,3 +131,13 @@ function my_acf_fields_relationship_query( $args, $field, $post_id ) {
 
     return $args;
 }
+
+/**
+* Remove unused taxonomies
+*/
+add_action('init', function() {
+    // unregister_taxonomy_for_object_type('xtt-pa-colecoes', 'post');
+    unregister_taxonomy_for_object_type('post_tag', 'post');
+    unregister_taxonomy_for_object_type('category', 'post');
+    unregister_taxonomy_for_object_type('xtt-pa-regiao', 'post');
+});

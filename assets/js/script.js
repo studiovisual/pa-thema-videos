@@ -118,8 +118,8 @@ document.addEventListener("DOMContentLoaded", onload, false);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eli/Dropbox (ComunicaDSA)/projects/deploy-remake.adventistas.org/wp-content/themes/pa-theme-videos/assets/scripts/script.js */"./assets/scripts/script.js");
-module.exports = __webpack_require__(/*! /Users/eli/Dropbox (ComunicaDSA)/projects/deploy-remake.adventistas.org/wp-content/themes/pa-theme-videos/assets/scss/style.scss */"./assets/scss/style.scss");
+__webpack_require__(/*! /Users/eli/Dropbox (ComunicaDSA)/projects/videos.adventistas.org-old/pt/wp-content/themes/pa-theme-videos/assets/scripts/script.js */"./assets/scripts/script.js");
+module.exports = __webpack_require__(/*! /Users/eli/Dropbox (ComunicaDSA)/projects/videos.adventistas.org-old/pt/wp-content/themes/pa-theme-videos/assets/scss/style.scss */"./assets/scss/style.scss");
 
 
 /***/ })
