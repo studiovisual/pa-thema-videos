@@ -125,7 +125,7 @@ add_action('acf/save_post', function($post_id) {
 });
 
 add_filter('acf/fields/relationship/query', 'my_acf_fields_relationship_query', 10, 3);
-function my_acf_fields_relationship_query( $args, $field, $post_id ) {
+function my_acf_fields_relationship_query( $args ) {
 
     $args['post_status'] = 'publish';
 

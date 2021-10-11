@@ -7,7 +7,7 @@ class PaRewriteRules {
         add_action( 'pre_post_link', [$this,'ReplacePostUrls'], 100, 3);
 	}
 
-	function InitPostUrls($permalink, $post, $leavename) {
+	function InitPostUrls($permalink, $post) {
 
         if($post->post_type == 'post') {
             // $permalink = '/editoria/%'.PATaxonomias::TAXONOMY_EDITORIAS.'%/%postname%/';
@@ -16,17 +16,18 @@ class PaRewriteRules {
     
         return $permalink;
     }
-    function PostRewriteRules($bool, $object = null, $extra_query_vars = null) {
+    function PostRewriteRules($bool) {
+        
         $rewrite_rule = 'editoria/([^/]+)/([^/]+)/?$';
         $rewrite_redirect = 'index.php?name=$matches[2]&post_type=post&xtt-pa-editorias=$matches[1]';
         add_rewrite_rule( $rewrite_rule, $rewrite_redirect);
     
         flush_rewrite_rules();
-    
+
         return $bool;
     }
     
-    function ReplacePostUrls($permalink, $post, $leavename) {
+    function ReplacePostUrls($permalink, $post) {
         if($post->post_type == 'post') {
     
             $args = array(
@@ -42,8 +43,9 @@ class PaRewriteRules {
             foreach($terms as $term) {
                 $permalink = str_replace('%'.$term->taxonomy.'%', $term->slug, $permalink);
             }
-            foreach($taxonomias as $taxonomia)
+            foreach($taxonomias as $taxonomia){
                 $permalink = str_replace('/%'.$taxonomia.'%', '', $permalink);
+            }
         }
     
         return $permalink;
