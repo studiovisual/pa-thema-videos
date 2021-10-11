@@ -29,4 +29,4 @@ class PaAcfPostFields {
 
 }
 
-new PaAcfPostFields();
+$PaAcfPostFields = new PaAcfPostFields();
