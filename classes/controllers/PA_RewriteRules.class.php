@@ -1,6 +1,6 @@
 <?php
 
-class PA_RewriteRules {
+class PaRewriteRules {
 	public function __construct(){
         add_filter( 'do_parse_request', [$this, 'PostRewriteRules'], 3);
         add_action( 'pre_post_link', [$this,'InitPostUrls'], 3, 3);
@@ -49,4 +49,4 @@ class PA_RewriteRules {
         return $permalink;
     }
 }
-new PA_RewriteRules();
+$PaRewriteRules = new PaRewriteRules();
