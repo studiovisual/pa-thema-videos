@@ -24,7 +24,7 @@ jobs:
         git config --global user.name "GH - Actions"
         git fetch
         git checkout origin/deploy
-        git merge master origin/deploy
+        git merge master deploy
         
     # # Install NodeJS and compile files
     # - name: Install Node 
