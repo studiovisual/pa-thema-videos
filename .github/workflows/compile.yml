@@ -22,9 +22,9 @@ jobs:
       run: |
         git config --global user.email "internetdsa@gmail.com"
         git config --global user.name "GH - Actions"
-      # git fetch
-      # git merge master origin/deploy
-      # git checkout origin/deploy
+        git fetch
+        git checkout origin/deploy
+        git merge master origin/deploy
         
     # # Install NodeJS and compile files
     # - name: Install Node 
