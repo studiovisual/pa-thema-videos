@@ -60,4 +60,4 @@ jobs:
         git checkout deploy
         git add .
         git commit -am "Compile theme versoin: $(git describe --abbrev=0)"
-        git push
+        git push origin deploy
