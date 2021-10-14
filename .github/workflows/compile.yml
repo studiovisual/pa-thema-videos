@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with: 
-        token: ${{ secrets.ACTION_TOKEN }}
+        token: ${{ secrets.ACTION_TOKEN2 }}
 
     # Checkout and merge branch master on deploy
     - name: Checkout/Merge git branches
@@ -56,7 +56,7 @@ jobs:
     # Git commit/push to deploy branch
     - name: Commit/Push to deploy branch
       run: |
-        git remote set-url origin https://x-access-token:${{ secrets.ACTION_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        # git remote set-url origin https://x-access-token:${{ secrets.ACTION_TOKEN2 }}@github.com/$GITHUB_REPOSITORY
         git checkout deploy
         git add .
         git commit -am "Compile theme versoin: $(git describe --abbrev=0)"
