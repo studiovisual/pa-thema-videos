@@ -7,12 +7,12 @@
 
 			@foreach ($items as $id)
 				<div class="card mb-35 mb-xl-4 border-0">
-					<a href="{{ get_the_permalink($id) }}" title="{{ get_the_title($id) }}">
+					<a href="{{ get_the_permalink($id) }}" title="{!! wp_strip_all_tags(get_the_title($id)) !!}">
 						<div class="row">
 							<div class="img-container">
 								<div class="ratio ratio-16x9">
 									<figure class="figure m-xl-0">
-										<img src="{{ check_immg($id, 'full') }}" class="figure-img img-fluid rounded m-0" alt="{{ get_the_title($id) }}">
+										<img src="{{ check_immg($id, 'full') }}" class="figure-img img-fluid rounded m-0" alt="{!! wp_strip_all_tags(get_the_title($id)) !!}">
 
 										@hasfield('video_length', $id)
 											<div class="figure-caption position-absolute w-100 h-100 d-block">
@@ -26,7 +26,7 @@
 							</div>
 							<div class="col">
 								<div class="card-body p-0">
-									<h3 class="card-title h6 pa-truncate-3">{{ get_the_title($id) }}</h3>
+									<h3 class="card-title h6 pa-truncate-3">{!! wp_strip_all_tags(get_the_title($id)) !!}</h3>
 								</div>
 							</div>
 						</div>
