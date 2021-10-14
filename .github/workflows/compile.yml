@@ -23,7 +23,7 @@ jobs:
         git remote set-url origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
         git fetch
         git checkout origin/deploy
-        git merge master deploy
+        git merge master origin/deploy
         
     # Install NodeJS and compile files
     - name: Install Node 
