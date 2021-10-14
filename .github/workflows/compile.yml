@@ -47,10 +47,10 @@ jobs:
 
     - name: Execute composer
       run: |
-        apt-get update
-        ldconfig
-        apt --fix-broken install -y
-        composer install
+        sudo apt-get update
+        sudo ldconfig
+        sudo apt --fix-broken install -y
+        sudo composer install
 
     # Git commit/push to deploy branch
     - name: Commit/Push to deploy branch
