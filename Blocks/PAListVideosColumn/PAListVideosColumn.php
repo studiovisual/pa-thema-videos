@@ -3,11 +3,12 @@
 namespace Blocks\PAListVideosColumn;
 
 use Blocks\Block;
-use Blocks\Fields\MoreContent;
+use Extended\LocalData;
+use Fields\MoreContent;
+use Extended\TaxonomyTerms;
 use WordPlate\Acf\ConditionalLogic;
 use WordPlate\Acf\Fields\ButtonGroup;
 use WordPlate\Acf\Fields\Number;
-use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
 
 /**
@@ -44,36 +45,44 @@ class PAListVideosColumn extends Block
 
                 ButtonGroup::make('Modo', 'mode')
                     ->choices([
-                        'manual'  => 'Manual',
+                        'manual'  => 'Últimos posts',
                         'popular' => 'Mais vistos',
-                        'latest' => 'Mais recentes'
                     ])
                     ->defaultValue('manual'),
 
-                Relationship::make('Vídeos', 'items')
-                    ->instructions('Selecione Vídeo')
+                LocalData::make('Vídeos', 'items')
+                    ->instructions('Selecionar vídeos')
                     ->postTypes(['post'])
-                    ->filters([
-                        'search',
-                        'taxonomy'
-                    ])
-                    ->elements(['featured_image'])
-                    ->min(1)
-                    ->returnFormat('id') // id or object (default)
-                    ->required()
+                    ->initialLimit(4)
+                    ->manualItems(false)
                     ->conditionalLogic([
                         ConditionalLogic::if('mode')->equals('manual')
                     ]),
 
+                TaxonomyTerms::make('Taxonomias', 'taxonomies')
+                  ->stylisedUi()
+                  ->loadTerms(false)
+                  ->saveTerms(false)
+                  ->useAjax()
+                  ->multiple()
+                  ->returnFormat('object')
+                  ->fieldType('select')
+                  ->taxonomies([
+                    'xtt-pa-colecoes',
+                    'xtt-pa-editorias',
+                    'xtt-pa-departamentos',
+                    'xtt-pa-projetos',
+                    'xtt-pa-sedes',
+                  ])
+                  ->conditionalLogic([
+                    ConditionalLogic::if('mode')->equals('popular')
+                  ]),
                 Number::make('Quantidade', 'items_count')
                     ->min(1)
                     ->required()
                     ->defaultValue(4)
                     ->conditionalLogic([
                         ConditionalLogic::if('mode')->equals('popular')
-                    ])
-                    ->conditionalLogic([
-                        ConditionalLogic::if('mode')->equals('latest')
                     ])
             ],
             MoreContent::make()
@@ -91,12 +100,7 @@ class PAListVideosColumn extends Block
         $mode = get_field('mode');
 
         if($mode == 'manual')
-            $items = get_field('items');
-        elseif($mode == 'latest')
-			$items = (new \WP_Query([
-				'fields'         => 'ids',
-				'posts_per_page' => get_field('items_count'),
-			]))->posts;
+            $items = array_column(get_field('items')['data'], 'id');
         elseif(function_exists('get_popular_posts'))
             $items = get_popular_posts([
                 'fields'         => 'ids',

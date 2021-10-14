@@ -5,7 +5,7 @@ namespace Blocks\PAFeaturePost;
 use Blocks\Block;
 use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
-use Blocks\Extended\LocalData;
+use Extended\LocalData;
 
 
 /**
@@ -65,8 +65,8 @@ class PAFeaturePost extends Block
 	public function with(): array
     {
 		return [
-			'title'	=> field('title'),
-			'id'	=> field('items')[0],
+			'title'	=> get_field('title'),
+			'id'	=> get_field('items')[0],
 		];
 	}
 }
