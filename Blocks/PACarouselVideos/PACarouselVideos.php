@@ -3,10 +3,9 @@
 namespace Blocks\PACarouselVideos;
 
 use Blocks\Block;
+use Extended\LocalData;
 use WordPlate\Acf\ConditionalLogic;
 use WordPlate\Acf\Fields\ButtonGroup;
-use WordPlate\Acf\Fields\Number;
-use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
 
 /**
@@ -30,6 +29,8 @@ class PACarouselVideos extends Block
 							d="M29,23H3c-1.1,0-2-0.9-2-2V5c0-1.1,0.9-2,2-2h26c1.1,0,2,0.9,2,2v16C31,22.1,30.1,23,29,23z"/><circle class="st0" cx="16" cy="28" r="1"/>
 							<circle class="st0" cx="10" cy="28" r="1"/><circle class="st0" cx="22" cy="28" r="1"/></svg>',
 		]);
+
+    add_filter('acf/fields/localposts_data/query/name=items_popular', array($this, 'filter'));
 	}
 
 	/**
@@ -45,36 +46,42 @@ class PACarouselVideos extends Block
 
 			ButtonGroup::make('Modo', 'mode')
 				->choices([
-					'manual'  => 'Manual',
-					'popular' => 'Mais vistos',
 					'latest' => 'Mais recentes',
+					'popular' => 'Mais vistos',
 				])
-				->defaultValue('manual'),
+				->defaultValue('latest'),
 
-            Relationship::make('Itens', 'items')
-                ->instructions('Selecione Vídeo')
-                ->postTypes(['post'])
-                ->filters([
-                    'search',
-                    'taxonomy'
-                ])
-                ->elements(['featured_image'])
-                ->returnFormat('id') // id or object (default)
-                ->required()
-				->conditionalLogic([
-					ConditionalLogic::if('mode')->equals('manual')
-				]),
+        LocalData::make('Vídeos', 'items_latest')
+          ->instructions('Selecionar vídeos')
+          ->postTypes(['post'])
+          ->initialLimit(10)
+          ->manualItems(false)
+          ->filterTaxonomies([
+            'xtt-pa-colecoes',
+            'xtt-pa-editorias',
+            'xtt-pa-departamentos',
+            'xtt-pa-projetos',
+            'xtt-pa-sedes',
+          ])
+          ->conditionalLogic([
+              ConditionalLogic::if('mode')->equals('latest')
+          ]),
 
-			Number::make('Quantidade', 'items_count')
-				->min(1)
-				->required()
-				->defaultValue(4)
-				->conditionalLogic([
-					ConditionalLogic::if('mode')->equals('popular')
-				])
-				->conditionalLogic([
-					ConditionalLogic::if('mode')->equals('latest')
-				])
+        LocalData::make('Vídeos', 'items_popular')
+          ->instructions('Selecionar vídeos')
+          ->postTypes(['post'])
+          ->initialLimit(10)
+          ->manualItems(false)
+          ->filterTaxonomies([
+            'xtt-pa-colecoes',
+            'xtt-pa-editorias',
+            'xtt-pa-departamentos',
+            'xtt-pa-projetos',
+            'xtt-pa-sedes',
+          ])
+          ->conditionalLogic([
+              ConditionalLogic::if('mode')->equals('popular')
+          ]),
 		];
 	}
 
@@ -85,26 +92,20 @@ class PACarouselVideos extends Block
 	 */
 	public function with(): array
     {
-		$items = array();
-		$mode = get_field('mode');
-
-        if($mode == 'manual')
-            $items = get_field('items');
-		elseif($mode == 'latest')
-			$items = (new \WP_Query([
-				'fields'         => 'ids',
-				'posts_per_page' => get_field('items_count'),
-			]))->posts;
-        elseif(function_exists('get_popular_posts'))
-            $items = get_popular_posts([
-                'fields'         => 'ids',
-                'posts_per_page' => get_field('items_count'),
-            ])->posts;
+      $mode = get_field('mode');
 
 		return [
 			'title'	=> get_field('title'),
-			'items'	=> $items,
+			'items'	=> array_column(get_field("items_{$mode}")['data'], 'id'),
 		];
 	}
+
+  function filter(array $args): array {
+    $args['meta_key'] = 'views_count';
+    $args['orderby']  = 'meta_value_num';
+    $args['order']    = 'DESC';
+
+    return $args;
+  }
 
 }

@@ -45,7 +45,7 @@ class PAListVideosColumn extends Block
 
                 ButtonGroup::make('Modo', 'mode')
                     ->choices([
-                        'latest'  => 'Últimos posts',
+                        'latest'  => 'Mais recentes',
                         'popular' => 'Mais vistos',
                     ])
                     ->defaultValue('latest'),
