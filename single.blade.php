@@ -16,6 +16,9 @@
 
                     {{-- Post relacionados --}}
                     @include('template-parts.single.related-posts')
+
+                    {{-- Post relacionados --}}
+                    @include('template-parts.single.comments')
                 </section>
 
                 {{-- Sidebar --}}
