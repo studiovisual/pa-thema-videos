@@ -5,10 +5,8 @@ namespace Blocks\PAListVideosColumn;
 use Blocks\Block;
 use Extended\LocalData;
 use Fields\MoreContent;
-use Extended\TaxonomyTerms;
 use WordPlate\Acf\ConditionalLogic;
 use WordPlate\Acf\Fields\ButtonGroup;
-use WordPlate\Acf\Fields\Number;
 use WordPlate\Acf\Fields\Text;
 
 /**
@@ -28,6 +26,8 @@ class PAListVideosColumn extends Block
             'keywords'    => ['list', 'video'],
             'icon'        => 'playlist-video',
         ]);
+
+        add_filter('acf/fields/localposts_data/query/name=items_popular', array($this, 'filter'));
     }
 
     /**
@@ -45,29 +45,33 @@ class PAListVideosColumn extends Block
 
                 ButtonGroup::make('Modo', 'mode')
                     ->choices([
-                        'manual'  => 'Últimos posts',
+                        'latest'  => 'Últimos posts',
                         'popular' => 'Mais vistos',
                     ])
-                    ->defaultValue('manual'),
+                    ->defaultValue('latest'),
 
-                LocalData::make('Vídeos', 'items')
+                LocalData::make('Vídeos', 'items_latest')
                     ->instructions('Selecionar vídeos')
                     ->postTypes(['post'])
                     ->initialLimit(4)
                     ->manualItems(false)
+                    ->filterTaxonomies([
+                      'xtt-pa-colecoes',
+                      'xtt-pa-editorias',
+                      'xtt-pa-departamentos',
+                      'xtt-pa-projetos',
+                      'xtt-pa-sedes',
+                    ])
                     ->conditionalLogic([
-                        ConditionalLogic::if('mode')->equals('manual')
+                        ConditionalLogic::if('mode')->equals('latest')
                     ]),
 
-                TaxonomyTerms::make('Taxonomias', 'taxonomies')
-                  ->stylisedUi()
-                  ->loadTerms(false)
-                  ->saveTerms(false)
-                  ->useAjax()
-                  ->multiple()
-                  ->returnFormat('object')
-                  ->fieldType('select')
-                  ->taxonomies([
+                LocalData::make('Vídeos', 'items_popular')
+                  ->instructions('Selecionar vídeos')
+                  ->postTypes(['post'])
+                  ->initialLimit(4)
+                  ->manualItems(false)
+                  ->filterTaxonomies([
                     'xtt-pa-colecoes',
                     'xtt-pa-editorias',
                     'xtt-pa-departamentos',
@@ -75,15 +79,8 @@ class PAListVideosColumn extends Block
                     'xtt-pa-sedes',
                   ])
                   ->conditionalLogic([
-                    ConditionalLogic::if('mode')->equals('popular')
+                      ConditionalLogic::if('mode')->equals('popular')
                   ]),
-                Number::make('Quantidade', 'items_count')
-                    ->min(1)
-                    ->required()
-                    ->defaultValue(4)
-                    ->conditionalLogic([
-                        ConditionalLogic::if('mode')->equals('popular')
-                    ])
             ],
             MoreContent::make()
         );
@@ -96,23 +93,22 @@ class PAListVideosColumn extends Block
      */
     public function with(): array
     {
-        $items = array();
         $mode = get_field('mode');
-
-        if($mode == 'manual')
-            $items = array_column(get_field('items')['data'], 'id');
-        elseif(function_exists('get_popular_posts'))
-            $items = get_popular_posts([
-                'fields'         => 'ids',
-                'posts_per_page' => get_field('items_count'),
-            ])->posts;
 
         return [
             'title'        => get_field('title'),
-            'items'        => $items,
+            'items'        => array_column(get_field("items_{$mode}")['data'], 'id'),
             'enable_link'  => get_field('enable_link'),
             'link'         => get_field('link'),
         ];
     }
     
+    function filter(array $args): array {
+      $args['meta_key'] = 'views_count';
+      $args['orderby']  = 'meta_value_num';
+      $args['order']    = 'DESC';
+
+      return $args;
+    }
+
 }
