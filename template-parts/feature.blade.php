@@ -10,6 +10,7 @@
 
                         @hasfield('video_length', $post->ID)
                             <div class="figure-caption position-absolute w-100 h-100 d-block">
+                                <i class="fas fa-play position-absolute top-50 start-50 translate-middle pa-icon-play"></i>
                                 <span class="pa-video-time position-absolute px-2 rounded-1">
                                     <i class="far fa-clock me-1" aria-hidden="true"></i> @videolength($post->ID)
                                 </span>

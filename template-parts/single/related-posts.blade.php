@@ -6,7 +6,7 @@
     {{-- Title --}}
     <div class="row mb-4">
         <div class="col-12">
-            <h2>Vídeos Relacionados</h2>
+            <h2>{{ __('Vídeos Relacionados', 'iasd') }}</h2>
         </div>
     </div>
 

@@ -19,7 +19,7 @@ class PACarouselVideos extends Block
 	public function __construct()
     {
 		parent::__construct([
-			'title' 	  => 'IASD - Carrosel de Vídeos',
+			'title' 	  => __('IASD - Carrosel de Vídeos', 'iasd'),
 			'description' => '',
 			'category' 	  => 'pa-adventista',
 			'keywords' 	  => ['featured'],
@@ -40,19 +40,19 @@ class PACarouselVideos extends Block
 	protected function setFields(): array
     {
 		return [
-            Text::make('Título', 'title')
-                ->defaultValue('IASD - Carrosel de Vídeos'),
+            Text::make(__('Título', 'iasd'), 'title')
+                ->defaultValue(__('IASD - Carrosel de Vídeos', 'iasd')),
 
-			ButtonGroup::make('Modo', 'mode')
+			ButtonGroup::make(__('Modo', 'iasd'), 'mode')
 				->choices([
-					'manual'  => 'Manual',
-					'popular' => 'Mais vistos',
-					'latest' => 'Mais recentes',
+					'manual'  => __('Manual', 'iasd'),
+					'popular' => __('Mais vistos', 'iasd'),
+					'latest' => __('Mais recentes', 'iasd'),
 				])
 				->defaultValue('manual'),
 
-            Relationship::make('Itens', 'items')
-                ->instructions('Selecione Vídeo')
+            Relationship::make(__('Itens', 'iasd'), 'items')
+                ->instructions(__('Selecione Vídeo', 'iasd'))
                 ->postTypes(['post'])
                 ->filters([
                     'search',
@@ -65,7 +65,7 @@ class PACarouselVideos extends Block
 					ConditionalLogic::if('mode')->equals('manual')
 				]),
 
-			Number::make('Quantidade', 'items_count')
+			Number::make(__('Quantidade', 'iasd'), 'items_count')
 				->min(1)
 				->required()
 				->defaultValue(4)

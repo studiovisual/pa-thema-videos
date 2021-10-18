@@ -52,17 +52,23 @@ function getDepartment($post_id) {
  * @return array
  */
 function getRelatedPosts($post_id, $limit = 6): array {
-    if($terms = get_the_terms($post_id, 'xtt-pa-projetos')):
-      $terms = wp_list_pluck($terms, 'term_id');
-
+    if(get_the_terms($post_id, 'xtt-pa-projetos') || get_the_terms($post_id, 'xtt-pa-departamentos')):
+      $terms_projetos = wp_list_pluck(get_the_terms($post_id, 'xtt-pa-projetos'), 'term_id');
+      $terms_deptos = wp_list_pluck(get_the_terms($post_id, 'xtt-pa-departamentos'), 'term_id');
+      
       $args = array(
         'post_type'      => 'post',
         'post__not_in'   => array($post_id),
         'posts_per_page' => $limit,
         'tax_query'      => array(
+          'relation'     => 'OR',
           array(
             'taxonomy' => 'xtt-pa-projetos',
-            'terms'    => $terms,
+            'terms'    => $terms_projetos,
+          ),
+          array(
+            'taxonomy' => 'xtt-pa-departamentos',
+            'terms'    => $terms_deptos,
           ),
         ),
       );

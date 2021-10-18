@@ -18,7 +18,7 @@ class PAFeaturePost extends Block
 	public function __construct()
     {
 		parent::__construct([
-			'title' 	  => 'IASD - Destaque',
+			'title' 	  => __('IASD - Destaque', 'iasd'),
 			'description' => '',
 			'category' 	  => 'pa-adventista',
 			'post_types'  => ['post', 'page'],
@@ -39,11 +39,11 @@ class PAFeaturePost extends Block
 	protected function setFields(): array
     {
 		return [
-            Text::make('Título', 'title')
-                ->defaultValue('Destaque'),
+            Text::make(__('Título', 'iasd'), 'title')
+                ->defaultValue(__('Destaque', 'iasd')),
 
-            Relationship::make('Post em Destaque', 'items')
-                ->instructions('Selecione Vídeo')
+            Relationship::make(__('Post em Destaque', 'iasd'), 'items')
+                ->instructions(__('Selecione Vídeo', 'iasd'))
                 ->postTypes(['post'])
                 ->filters([
                     'search',
