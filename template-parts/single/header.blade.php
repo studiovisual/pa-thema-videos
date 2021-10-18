@@ -40,21 +40,21 @@
 
                 {{-- Twitter --}}
                 <li class="list-inline-item">
-                    <a rel="canonical" target="_blank" rel=noopener href="@php(linkToShare(get_the_ID(), 'twitter'))">
+                    <a rel="canonical" target="_blank" rel="noopener" href="@php(linkToShare(get_the_ID(), 'twitter'))">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
 
                 {{-- Facebook --}}
                 <li class="list-inline-item">
-                    <a rel="canonical" target="_blank" rel=noopener href="@php(linkToShare(get_the_ID(), 'facebook'))">
+                    <a rel="canonical" target="_blank" rel="noopener" href="@php(linkToShare(get_the_ID(), 'facebook'))">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
 
                 {{-- Whatssapp --}}
                 <li class="list-inline-item">
-                    <a rel="canonical" target="_blank" rel=noopener href="@php(linkToShare(get_the_ID(), 'whatsapp'))" >
+                    <a rel="canonical" target="_blank" rel="noopener" href="@php(linkToShare(get_the_ID(), 'whatsapp'))" >
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </li>
