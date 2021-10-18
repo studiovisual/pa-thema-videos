@@ -12,13 +12,13 @@ class PaAcfPostFields {
 
     function createACFFields() {
         register_extended_field_group([
-            'title' => __('Informações do vídeo', 'iasd'),
+            'title' => __('Video info', 'iasd'),
             'style' => 'default',
             'fields' => [
-                Oembed::make(__('Vídeo', 'iasd'), 'video_url')
+                Oembed::make(__('Video', 'iasd'), 'video_url')
                     ->required(),
-                Number::make(__('Duração', 'iasd'), 'video_length')
-                    ->instructions(__('Será obtido ao salvar o post', 'iasd'))
+                Number::make(__('Lenght', 'iasd'), 'video_length')
+                    ->instructions(__('It will be get when saving the post.', 'iasd'))
                     ->readOnly(),
             ],
             'location' => [

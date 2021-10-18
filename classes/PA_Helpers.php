@@ -28,7 +28,7 @@ function getPrioritySeat($post_id): string {
     if($term = get_the_terms($post_id, 'xtt-pa-owner'))
         return $term[0]->name;
 
-    return 'Não há nenhuma sede proprietária vinculada a este post.';
+    return __('There is no headquarter office linked to this post.', 'iasd');
 }
 
 /**

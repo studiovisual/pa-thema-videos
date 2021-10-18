@@ -140,4 +140,6 @@ add_action('init', function() {
     unregister_taxonomy_for_object_type('post_tag', 'post');
     unregister_taxonomy_for_object_type('category', 'post');
     unregister_taxonomy_for_object_type('xtt-pa-regiao', 'post');
+    
+    load_theme_textdomain('iasd', get_template_directory() . '/language/');
 });
