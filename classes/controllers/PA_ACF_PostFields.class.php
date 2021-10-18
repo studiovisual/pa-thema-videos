@@ -13,6 +13,7 @@ class PaAcfPostFields {
     function createACFFields() {
         register_extended_field_group([
             'title' => __('Video info', 'iasd'),
+            'key'   => 'video_info',
             'style' => 'default',
             'fields' => [
                 Oembed::make(__('Video', 'iasd'), 'video_url')

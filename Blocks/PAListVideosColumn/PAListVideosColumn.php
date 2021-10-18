@@ -21,7 +21,7 @@ class PAListVideosColumn extends Block
     {
         // Set block settings
         parent::__construct([
-            'title'       => __('IASD - Vídeos - List', 'iasd'),
+            'title'       => __('IASD - Vídeos - List(B)', 'iasd'),
             'description' => __('Block to show videos contents in list format.', 'iasd'),
             'category'    => 'pa-adventista',
             'keywords'    => ['list', 'video'],

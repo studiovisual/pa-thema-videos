@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-10-18 12:17-0300\n"
-"PO-Revision-Date: 2021-10-18 12:17-0300\n"
+"POT-Creation-Date: 2021-10-18 14:12-0300\n"
+"PO-Revision-Date: 2021-10-18 14:18-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -14,10 +14,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-KeywordsList: __;_e;_x;esc_html__;esc_html_e;esc_html_x;esc_attr__;"
 "esc_attr_e;esc_attr_x\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#: components/header/title.blade.php:5
+msgid "Adventist videos"
+msgstr "Vídeos adventistas"
+
+#: template-parts/feature.blade.php:3 Blocks/PAFeaturePost/PAFeaturePost.php:43
+msgid "Feature"
+msgstr "Destaque"
+
+#: template-parts/single/header.blade.php:39
+msgid "Share:"
+msgstr "Compartilhar:"
+
+#: template-parts/single/related-posts.blade.php:9
+msgid "Related video"
+msgstr "Vídeos relacionados"
 
 #: Blocks/PACarouselVideos/PACarouselVideos.php:22
 #: Blocks/PACarouselVideos/PACarouselVideos.php:44
@@ -69,22 +86,21 @@ msgstr "Quantidade"
 msgid "IASD - Videos - Feature"
 msgstr ""
 
-#: Blocks/PAFeaturePost/PAFeaturePost.php:43
-msgid "Feature"
-msgstr "Destaque"
-
 #: Blocks/PAFeaturePost/PAFeaturePost.php:45
 msgid "Featured posts"
 msgstr "Posts em destaque"
 
 #: Blocks/PAListVideosColumn/PAListVideosColumn.php:24
-#: Blocks/PAListVideosColumn/PAListVideosColumn.php:42
-msgid "IASD - Vídeos - List"
+msgid "IASD - Vídeos - List(B)"
 msgstr ""
 
 #: Blocks/PAListVideosColumn/PAListVideosColumn.php:25
 msgid "Block to show videos contents in list format."
 msgstr "Bloco para exibir vídeos no formato de lista."
+
+#: Blocks/PAListVideosColumn/PAListVideosColumn.php:42
+msgid "IASD - Vídeos - List"
+msgstr ""
 
 #: Blocks/PAListVideosColumn/PAListVideosColumn.php:53
 msgid "Videos"
@@ -98,14 +114,14 @@ msgstr "Não tem nenhuma Sede Proprietária linkada a este post."
 msgid "Video info"
 msgstr "Informação do vídeo"
 
-#: classes/controllers/PA_ACF_PostFields.class.php:18
+#: classes/controllers/PA_ACF_PostFields.class.php:19
 msgid "Video"
 msgstr "Vídeo"
 
-#: classes/controllers/PA_ACF_PostFields.class.php:20
+#: classes/controllers/PA_ACF_PostFields.class.php:21
 msgid "Lenght"
 msgstr "Duração"
 
-#: classes/controllers/PA_ACF_PostFields.class.php:21
+#: classes/controllers/PA_ACF_PostFields.class.php:22
 msgid "It will be get when saving the post."
 msgstr "Será obtido ao salvar o post."
