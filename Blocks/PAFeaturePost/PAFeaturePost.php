@@ -18,8 +18,8 @@ class PAFeaturePost extends Block
 	public function __construct()
     {
 		parent::__construct([
-			'title' 	  => 'IASD - Destaque',
-			'description' => '',
+			'title' 	  => __('IASD - Videos - Feature', 'iasd'),
+			'description' => 'Block to show a single video content on feature format.',
 			'category' 	  => 'pa-adventista',
 			'post_types'  => ['post', 'page'],
 			'keywords' 	  => ['featured'],
@@ -39,11 +39,11 @@ class PAFeaturePost extends Block
 	protected function setFields(): array
     {
 		return [
-            Text::make('Título', 'title')
-                ->defaultValue('Destaque'),
+            Text::make(__('Title', 'iasd'), 'title')
+                ->defaultValue(__('Feature', 'iasd')),
 
-            Relationship::make('Post em Destaque', 'items')
-                ->instructions('Selecione Vídeo')
+            Relationship::make(__('Featured posts', 'iasd'), 'items')
+                ->instructions(__('Video select', 'iasd'))
                 ->postTypes(['post'])
                 ->filters([
                     'search',

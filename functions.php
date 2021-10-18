@@ -135,9 +135,12 @@ function my_acf_fields_relationship_query( $args ) {
 /**
 * Remove unused taxonomies
 */
-add_action('init', function() {
+add_action('after_setup_theme', function() {
     // unregister_taxonomy_for_object_type('xtt-pa-colecoes', 'post');
     unregister_taxonomy_for_object_type('post_tag', 'post');
     unregister_taxonomy_for_object_type('category', 'post');
     unregister_taxonomy_for_object_type('xtt-pa-regiao', 'post');
-});
+    
+    load_theme_textdomain('iasd', get_stylesheet_directory() . '/language/');
+}, 9);
+

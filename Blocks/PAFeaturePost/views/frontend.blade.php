@@ -1,5 +1,5 @@
 @if (is_admin())
-    <img class="img-preview" src="{{ get_stylesheet_directory_uri() }}/Blocks/PAFeaturePost/preview.png" alt="Block preview"/>
+    <img class="img-preview" src="{{ get_stylesheet_directory_uri() }}/Blocks/PAFeaturePost/preview.png" alt="{{ __('Illustrative image of the front end of the block.', 'iasd') }}/>
 @else
     <div class="col-lg-8">
         <div class="pa-blog-itens mb-5">    

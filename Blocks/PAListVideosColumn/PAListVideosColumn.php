@@ -21,8 +21,8 @@ class PAListVideosColumn extends Block
     {
         // Set block settings
         parent::__construct([
-            'title'       => 'IASD - Vídeos',
-            'description' => 'Lista de vídeos em apenas uma coluna',
+            'title'       => __('IASD - Vídeos - List(B)', 'iasd'),
+            'description' => __('Block to show videos contents in list format.', 'iasd'),
             'category'    => 'pa-adventista',
             'keywords'    => ['list', 'video'],
             'icon'        => 'playlist-video',
@@ -38,20 +38,20 @@ class PAListVideosColumn extends Block
     {
         return array_merge(
             [
-                Text::make('Título', 'title')
-                    ->defaultValue('IASD - Vídeos')
+                Text::make(__('Title', 'iasd'), 'title')
+                    ->defaultValue(__('IASD - Vídeos - List', 'iasd'))
                     ->required(),
 
-                ButtonGroup::make('Modo', 'mode')
+                ButtonGroup::make(__('Mode', 'iasd'), 'mode')
                     ->choices([
-                        'manual'  => 'Manual',
-                        'popular' => 'Mais vistos',
-                        'latest' => 'Mais recentes'
+                        'manual'  => __('Manual', 'iasd'),
+                        'popular' => __('Popular', 'iasd'),
+                        'latest' => __('Latest', 'iasd')
                     ])
                     ->defaultValue('manual'),
 
-                Relationship::make('Vídeos', 'items')
-                    ->instructions('Selecione Vídeo')
+                Relationship::make(__('Videos', 'iasd'), 'items')
+                    ->instructions(__('Video select', 'iasd'))
                     ->postTypes(['post'])
                     ->filters([
                         'search',
@@ -65,7 +65,7 @@ class PAListVideosColumn extends Block
                         ConditionalLogic::if('mode')->equals('manual')
                     ]),
 
-                Number::make('Quantidade', 'items_count')
+                Number::make(__('Quantity', 'iasd'), 'items_count')
                     ->min(1)
                     ->required()
                     ->defaultValue(4)

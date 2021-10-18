@@ -36,7 +36,7 @@
     <div class="col-auto">
         <div class="pa-share">
             <ul class="list-inline">
-                <li class="list-inline-item">Compartilhar: </li>
+                <li class="list-inline-item">{{ __('Share:', 'iasd') }} </li>
 
                 {{-- Twitter --}}
                 <li class="list-inline-item">
