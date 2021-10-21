@@ -3,11 +3,10 @@
 namespace Blocks\PAListVideosColumn;
 
 use Blocks\Block;
-use Blocks\Fields\MoreContent;
+use Extended\LocalData;
+use Fields\MoreContent;
 use WordPlate\Acf\ConditionalLogic;
 use WordPlate\Acf\Fields\ButtonGroup;
-use WordPlate\Acf\Fields\Number;
-use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
 
 /**
@@ -27,6 +26,8 @@ class PAListVideosColumn extends Block
             'keywords'    => ['list', 'video'],
             'icon'        => 'playlist-video',
         ]);
+
+        add_filter('acf/fields/localposts_data/query/name=items_popular', array($this, 'filter'));
     }
 
     /**
@@ -44,37 +45,42 @@ class PAListVideosColumn extends Block
 
                 ButtonGroup::make('Modo', 'mode')
                     ->choices([
-                        'manual'  => 'Manual',
+                        'latest'  => 'Mais recentes',
                         'popular' => 'Mais vistos',
-                        'latest' => 'Mais recentes'
                     ])
-                    ->defaultValue('manual'),
+                    ->defaultValue('latest'),
 
-                Relationship::make('Vídeos', 'items')
-                    ->instructions('Selecione Vídeo')
+                LocalData::make('Vídeos', 'items_latest')
+                    ->instructions('Selecionar vídeos')
                     ->postTypes(['post'])
-                    ->filters([
-                        'search',
-                        'taxonomy'
-                    ])
-                    ->elements(['featured_image'])
-                    ->min(1)
-                    ->returnFormat('id') // id or object (default)
-                    ->required()
-                    ->conditionalLogic([
-                        ConditionalLogic::if('mode')->equals('manual')
-                    ]),
-
-                Number::make('Quantidade', 'items_count')
-                    ->min(1)
-                    ->required()
-                    ->defaultValue(4)
-                    ->conditionalLogic([
-                        ConditionalLogic::if('mode')->equals('popular')
+                    ->initialLimit(4)
+                    ->manualItems(false)
+                    ->filterTaxonomies([
+                      'xtt-pa-colecoes',
+                      'xtt-pa-editorias',
+                      'xtt-pa-departamentos',
+                      'xtt-pa-projetos',
+                      'xtt-pa-sedes',
                     ])
                     ->conditionalLogic([
                         ConditionalLogic::if('mode')->equals('latest')
-                    ])
+                    ]),
+
+                LocalData::make('Vídeos', 'items_popular')
+                  ->instructions('Selecionar vídeos')
+                  ->postTypes(['post'])
+                  ->initialLimit(4)
+                  ->manualItems(false)
+                  ->filterTaxonomies([
+                    'xtt-pa-colecoes',
+                    'xtt-pa-editorias',
+                    'xtt-pa-departamentos',
+                    'xtt-pa-projetos',
+                    'xtt-pa-sedes',
+                  ])
+                  ->conditionalLogic([
+                      ConditionalLogic::if('mode')->equals('popular')
+                  ]),
             ],
             MoreContent::make()
         );
@@ -87,28 +93,22 @@ class PAListVideosColumn extends Block
      */
     public function with(): array
     {
-        $items = array();
         $mode = get_field('mode');
-
-        if($mode == 'manual')
-            $items = get_field('items');
-        elseif($mode == 'latest')
-			$items = (new \WP_Query([
-				'fields'         => 'ids',
-				'posts_per_page' => get_field('items_count'),
-			]))->posts;
-        elseif(function_exists('get_popular_posts'))
-            $items = get_popular_posts([
-                'fields'         => 'ids',
-                'posts_per_page' => get_field('items_count'),
-            ])->posts;
 
         return [
             'title'        => get_field('title'),
-            'items'        => $items,
+            'items'        => array_column(get_field("items_{$mode}")['data'], 'id'),
             'enable_link'  => get_field('enable_link'),
             'link'         => get_field('link'),
         ];
     }
     
+    function filter(array $args): array {
+      $args['meta_key'] = 'views_count';
+      $args['orderby']  = 'meta_value_num';
+      $args['order']    = 'DESC';
+
+      return $args;
+    }
+
 }

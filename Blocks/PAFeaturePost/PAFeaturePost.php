@@ -3,9 +3,8 @@
 namespace Blocks\PAFeaturePost;
 
 use Blocks\Block;
-use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
-use Blocks\Extended\LocalData;
+use Extended\LocalData;
 
 
 /**
@@ -42,18 +41,20 @@ class PAFeaturePost extends Block
             Text::make('Título', 'title')
                 ->defaultValue('Destaque'),
 
-            Relationship::make('Post em Destaque', 'items')
-                ->instructions('Selecione Vídeo')
+              LocalData::make('Post em Destaque', 'items')
+                ->instructions('Selecionar o vídeo')
                 ->postTypes(['post'])
-                ->filters([
-                    'search',
-                    'taxonomy'
-                ])
-                ->elements(['featured_image'])
-                ->max(1)
-                ->returnFormat('id') // id or object (default)
-                ->required(),
-
+                ->initialLimit(1)
+                ->manualItems(false)
+                ->limitFilter(false)
+                ->canSticky(false)
+                ->filterTaxonomies([
+                  'xtt-pa-colecoes',
+                  'xtt-pa-editorias',
+                  'xtt-pa-departamentos',
+                  'xtt-pa-projetos',
+                  'xtt-pa-sedes',
+                ]),
 		];
 	}
 
@@ -62,11 +63,10 @@ class PAFeaturePost extends Block
 	 *
 	 * @return array
 	 */
-	public function with(): array
-    {
+	public function with(): array {
 		return [
-			'title'	=> field('title'),
-			'id'	=> field('items')[0],
+			'title'	=> get_field('title'),
+			'id'	=> !empty($items = get_field('items')) ? $items['data'][0]['id'] : null,
 		];
 	}
 }
