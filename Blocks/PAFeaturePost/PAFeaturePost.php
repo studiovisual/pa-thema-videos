@@ -3,9 +3,8 @@
 namespace Blocks\PAFeaturePost;
 
 use Blocks\Block;
-use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
-use Blocks\Extended\LocalData;
+use Extended\LocalData;
 
 
 /**
@@ -19,7 +18,7 @@ class PAFeaturePost extends Block
     {
 		parent::__construct([
 			'title' 	  => __('IASD - Videos - Feature', 'iasd'),
-			'description' => 'Block to show a single video content on feature format.',
+			'description' => __('Block to show a single video content on feature format.', 'iasd'),
 			'category' 	  => 'pa-adventista',
 			'post_types'  => ['post', 'page'],
 			'keywords' 	  => ['featured'],
@@ -42,18 +41,20 @@ class PAFeaturePost extends Block
             Text::make(__('Title', 'iasd'), 'title')
                 ->defaultValue(__('Feature', 'iasd')),
 
-            Relationship::make(__('Featured posts', 'iasd'), 'items')
-                ->instructions(__('Video select', 'iasd'))
+				LocalData::make(__('Videos', 'iasd'), 'items')
+				->instructions(__('Select videos', 'iasd'))
                 ->postTypes(['post'])
-                ->filters([
-                    'search',
-                    'taxonomy'
-                ])
-                ->elements(['featured_image'])
-                ->max(1)
-                ->returnFormat('id') // id or object (default)
-                ->required(),
-
+                ->initialLimit(10)
+                ->manualItems(false)
+                ->limitFilter(false)
+                ->canSticky(true)
+                ->filterTaxonomies([
+					'xtt-pa-sedes',
+					'xtt-pa-projetos',
+					'xtt-pa-departamentos',
+					'xtt-pa-colecoes',
+					'xtt-pa-editorias', 
+                ]),
 		];
 	}
 
@@ -62,11 +63,10 @@ class PAFeaturePost extends Block
 	 *
 	 * @return array
 	 */
-	public function with(): array
-    {
+	public function with(): array {
 		return [
-			'title'	=> field('title'),
-			'id'	=> field('items')[0],
+			'title'	=> get_field('title'),
+			'id'	=> !empty($items = get_field('items')) ? $items['data'][0]['id'] : null,
 		];
 	}
 }
