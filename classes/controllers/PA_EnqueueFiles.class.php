@@ -19,7 +19,6 @@ class PaEnqueueFiles {
           [
             'post_type'    => 'post',
             'taxonomies'   => [
-              'xtt-pa-colecoes',
               'xtt-pa-editorias',
               'xtt-pa-woner',
               'xtt-pa-sedes'
