@@ -19,7 +19,7 @@
                 <div class="pa-blog-item mb-4 mb-md-4 border-0 col-12 col-md-4 position-relative">
                     <div class="ratio ratio-16x9 mb-2">
                         <figure class="figure">
-                            <img src="{{ check_immg($post->ID, 'full') }}" class="figure-img img-fluid rounded m-0 w-100 h-100 object-cover" alt="{{ get_the_title($post->ID) }}">
+                            <img src="{{ check_immg($post->ID, 'medium') }}" class="figure-img img-fluid rounded m-0 w-100 h-100 object-cover" alt="{{ get_the_title($post->ID) }}">
 
                             @hasfield('video_length', $post->ID)
                                 <div class="figure-caption position-absolute w-100 h-100 d-block">

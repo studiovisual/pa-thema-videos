@@ -32,7 +32,7 @@
                                 <a href="{{ get_the_permalink($id) }}" title="{!! wp_strip_all_tags(get_the_title($id)) !!}">
                                     <div class="ratio ratio-16x9 mb-2">
                                         <figure class="figure">
-                                            <img src="{{ check_immg($id, 'full') }}" class="figure-img img-fluid rounded m-0" alt="{!! wp_strip_all_tags(get_the_title($id)) !!}">
+                                            <img src="{{ check_immg($id, 'medium') }}" class="figure-img img-fluid rounded m-0" alt="{!! wp_strip_all_tags(get_the_title($id)) !!}">
                                             
                                             @hasfield('video_length', $id)
                                                 <div class="figure-caption position-absolute w-100 h-100 d-block">
