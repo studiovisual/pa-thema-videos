@@ -1,3 +1,4 @@
-.github
-Dockerfile
-.secrets
+**/.github
+**/Dockerfile
+**/.secrets
+**/.*
