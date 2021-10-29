@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: internetdsa/pa-theme-videos:${{ steps.extract_branch.outputs.branch }}
+          tags: internetdsa/pa-theme-videos:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
