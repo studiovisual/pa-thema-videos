@@ -41,7 +41,7 @@ if(!empty($posts)):
 					$i = 0;
 					foreach($posts as $post) { 
 				?>
-					<i class="fas fa-circle fa-lg mx-2" data-glide-dir="=<?= $i; ?>"></i>
+					<em class="fas fa-circle fa-lg mx-2" data-glide-dir="=<?= $i; ?>"></em>
 				<?php 
 					$i++;
 				} 

@@ -143,10 +143,3 @@ add_action('after_setup_theme', function() {
     
     load_theme_textdomain('iasd', get_stylesheet_directory() . '/language/');
 }, 9);
-
-/** 
-	*TESTE SONAR CLOUD
-  REMOVER
- */
-
-aahshsh();

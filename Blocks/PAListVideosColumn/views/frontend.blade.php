@@ -17,7 +17,7 @@
 										@hasfield('video_length', $id)
 											<div class="figure-caption position-absolute w-100 h-100 d-block">
 												<span class="pa-video-time position-absolute px-2 rounded-1">
-													<i class="far fa-clock me-1" aria-hidden="true"></i> @videolength($id)
+													<em class="far fa-clock me-1" aria-hidden="true"></em> @videolength($id)
 												</span>
 											</div>
 										@endfield
