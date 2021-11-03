@@ -20,7 +20,7 @@ class PaEnqueueFiles {
             'post_type'    => 'post',
             'taxonomies'   => [
               'xtt-pa-editorias',
-              'xtt-pa-woner',
+              'xtt-pa-owner',
               'xtt-pa-sedes'
             ],
           ]

@@ -53,8 +53,8 @@ function getDepartment($post_id) {
  */
 function getRelatedPosts($post_id, $limit = 6): array {
     if(get_the_terms($post_id, 'xtt-pa-projetos') || get_the_terms($post_id, 'xtt-pa-departamentos')):
-      $terms_projetos = wp_list_pluck(get_the_terms($post_id, 'xtt-pa-projetos'), 'term_id');
-      $terms_deptos = wp_list_pluck(get_the_terms($post_id, 'xtt-pa-departamentos'), 'term_id');
+      $terms_projetos = get_the_terms($post_id, 'xtt-pa-projetos') ? wp_list_pluck(get_the_terms($post_id, 'xtt-pa-projetos'), 'term_id') : null;
+      $terms_deptos   = get_the_terms($post_id, 'xtt-pa-departamentos') ? wp_list_pluck(get_the_terms($post_id, 'xtt-pa-departamentos'), 'term_id') : null;
       
       $args = array(
         'post_type'      => 'post',
