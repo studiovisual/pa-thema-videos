@@ -25,7 +25,7 @@ jobs:
         with: 
           args: >
             -Dsonar.organization=igrejaadventista
-            -Dsonar.projectKey=igrejaadventista_pa-thema-videos
+            -Dsonar.projectKey=igrejaadventista_pa-theme-videos
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
