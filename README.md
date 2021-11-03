@@ -2,7 +2,7 @@
 
 
 # Portal Aventista - [videos.adventistas.org](https://videos.adventistas.org)
-Desenvolvido para Wordpress
+Esse tema foi desenvolvido para ser a base do portal de [videos](https://videos.adventistas.org). Ele depende to tema [PA-Theme-Sedes](https://github.com/igrejaadventista/pa-theme-sedes) (Por favor, instale-o junto).
 
 ### Instalando dependências globais
 Siga as intruções antes começar a desenvolver no tema:
