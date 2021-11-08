@@ -7,8 +7,6 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [docker_hook]
-  pull_request:
-    types: [opened, synchronize, reopened]
 
 jobs:
   docker:
