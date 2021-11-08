@@ -19,7 +19,7 @@
 					])
 					
 					<div class="pa-pg-numbers row">
-						@php(new PaPageNumbers())
+						@php(PaThemeHelpers::pageNumbers())
 					</div>
 				</section>
 
