@@ -10,15 +10,15 @@
 
                     <div class="d-none d-xl-block" data-glide-el="controls">
                         <span class="fa-stack" data-glide-dir="&lt;">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="icon fas fa-arrow-left fa-stack-1x"></i>
+                            <em class="fas fa-circle fa-stack-2x"></em>
+                            <em class="icon fas fa-arrow-left fa-stack-1x"></em>
                         </span>
                     </div>
                     
                     <div class="d-none d-xl-block" data-glide-el="controls">
                         <span class="fa-stack" data-glide-dir="&gt;">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="icon fas fa-arrow-right fa-stack-1x"></i> 
+                            <em class="fas fa-circle fa-stack-2x"></em>
+                            <em class="icon fas fa-arrow-right fa-stack-1x"></em> 
                         </span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                                             @hasfield('video_length', $id)
                                                 <div class="figure-caption position-absolute w-100 h-100 d-block">
                                                     <span class="pa-video-time position-absolute px-2 rounded-1">
-                                                        <i class="far fa-clock me-1" aria-hidden="true"></i> @videolength($id)
+                                                        <em class="far fa-clock me-1" aria-hidden="true"></em> @videolength($id)
                                                     </span>
                                                 </div>
                                             @endfield

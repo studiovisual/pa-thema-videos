@@ -20,7 +20,7 @@
         <div class="figure-caption d-flex align-items-center justify-content-start">
             @hasfield('video_url', get_the_ID())
                 <span class="pa-video-time rounded-1">
-                    <i class="far fa-clock me-1"></i>        
+                    <em class="far fa-clock me-1"></em>        
 
                     @videolength(get_the_ID())
                 </span>
@@ -41,21 +41,21 @@
                 {{-- Twitter --}}
                 <li class="list-inline-item">
                     <a target="_blank" rel="noopener" href="@php(linkToShare(get_the_ID(), 'twitter'))">
-                        <i class="fab fa-twitter"></i>
+                        <em class="fab fa-twitter"></em>
                     </a>
                 </li>
 
                 {{-- Facebook --}}
                 <li class="list-inline-item">
                     <a target="_blank" rel="noopener" href="@php(linkToShare(get_the_ID(), 'facebook'))">
-                        <i class="fab fa-facebook-f"></i>
+                        <em class="fab fa-facebook-f"></em>
                     </a>
                 </li>
 
                 {{-- Whatssapp --}}
                 <li class="list-inline-item">
                     <a target="_blank" rel="noopener" href="@php(linkToShare(get_the_ID(), 'whatsapp'))" >
-                        <i class="fab fa-whatsapp"></i>
+                        <em class="fab fa-whatsapp"></em>
                     </a>
                 </li>
             

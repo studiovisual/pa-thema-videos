@@ -121,7 +121,7 @@ add_action('acf/save_post', function($post_id) {
     endif;
 
     if(!empty($host) && !empty($id))
-        getVideoLength($post_id, $host, $id);
+        videoInfo($post_id, $host, $id);
 });
 
 add_filter('acf/fields/relationship/query', 'my_acf_fields_relationship_query', 10, 3);
@@ -143,12 +143,3 @@ add_action('after_setup_theme', function() {
     
     load_theme_textdomain('iasd', get_stylesheet_directory() . '/language/');
 }, 9);
-
-
-
-/** 
-	*TESTE SONAR CLOUD
-  REMOVER
- */
-
- echo asdadasda;

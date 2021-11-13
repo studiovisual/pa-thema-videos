@@ -17,7 +17,7 @@
 										@hasfield('video_length', $id)
 											<div class="figure-caption position-absolute w-100 h-100 d-block">
 												<span class="pa-video-time position-absolute px-2 rounded-1">
-													<i class="far fa-clock me-1" aria-hidden="true"></i> @videolength($id)
+													<em class="far fa-clock me-1" aria-hidden="true"></em> @videolength($id)
 												</span>
 											</div>
 										@endfield
@@ -26,7 +26,7 @@
 							</div>
 							<div class="col">
 								<div class="card-body p-0">
-									<h3 class="card-title h6 pa-truncate-3">{!! wp_strip_all_tags(get_the_title($id)) !!}</h3>
+									<h3 class="card-title h6 fw-bold pa-truncate-3">{!! wp_strip_all_tags(get_the_title($id)) !!}</h3>
 								</div>
 							</div>
 						</div>
