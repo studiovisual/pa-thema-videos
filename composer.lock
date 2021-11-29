@@ -4,8 +4,22 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a8945f1618149cbc747e59c2a7337b8",
+    "content-hash": "b2ba3db077face26086dc7c16b310112",
     "packages": [
+        {
+            "name": "airesvsg/acf-to-rest-api",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/airesvsg/acf-to-rest-api/archive/refs/heads/master.zip"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "files": [
+                    "class-acf-to-rest-api.php"
+                ]
+            }
+        },
         {
             "name": "lordealeister/popular-posts",
             "version": "dev-release/1.2.3",
@@ -25,7 +39,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "lordealeister/popular-posts": 20
+        "lordealeister/popular-posts": 20,
+        "airesvsg/acf-to-rest-api": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
