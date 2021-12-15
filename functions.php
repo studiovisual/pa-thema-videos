@@ -9,7 +9,7 @@ define('THEME_DIR', get_stylesheet_directory() . '/');
 define('THEME_CSS', THEME_URI . 'assets/css/');
 define('THEME_JS', THEME_URI . 'assets/js/');
 define('THEME_IMGS', THEME_URI . 'assets/images/');
-define('ACF_TO_REST_API_REQUEST_VERSION', 2 );
+define('ACF_TO_REST_API_REQUEST_VERSION', 2);
 
 $ChildBlocks = new \Blocks\ChildBlocks;
 
@@ -17,7 +17,7 @@ add_filter('popular-posts/settings/url', function () {
   return THEME_URI . 'vendor/lordealeister/popular-posts/';
 });
 
-add_action('init', array( 'ACF_To_REST_API', 'init' ) );
+add_action('init', array('ACF_To_REST_API', 'init'));
 
 require_once(dirname(__FILE__) . '/classes/controllers/PA_ACF_PostFields.class.php');
 require_once(dirname(__FILE__) . '/classes/controllers/PA_EnqueueFiles.class.php');
@@ -167,3 +167,15 @@ function cconsole($var)
   echo "<script>console.log('" . $var . "');</script>";
   return;
 }
+
+
+function UpdateVideoLenght()
+{
+
+  //RESET CF CACHE
+  $url = "https://" . API_PA . "/clear-cache?zone=adventistas.dev";
+  $json = file_get_contents($url);
+  $obj = json_decode($json);
+  unset($json, $obj);
+}
+add_action('acf/save_post', 'UpdateVideoLenght');
