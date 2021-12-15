@@ -169,7 +169,7 @@ function cconsole($var)
 }
 
 
-function UpdateVideoLenght()
+function clear_cf_cache()
 {
 
   //RESET CF CACHE
@@ -178,4 +178,4 @@ function UpdateVideoLenght()
   $obj = json_decode($json);
   unset($json, $obj);
 }
-add_action('acf/save_post', 'UpdateVideoLenght');
+add_action('acf/save_post', 'clear_cf_cache');
