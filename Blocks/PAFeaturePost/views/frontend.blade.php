@@ -3,7 +3,7 @@
 @else
     <div class="col-lg-8">
         <div class="pa-blog-itens mb-5">    
-            <h2 class="mb-4">{{ $title }}</h2>
+            <h2 class="mb-4 pa-h2">{{ $title }}</h2>
 
             <div class="pa-blog-feature pa-w-list-videos">
                 
