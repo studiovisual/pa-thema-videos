@@ -5,8 +5,8 @@
 @empty(!$relatedPosts)
     {{-- Title --}}
     <div class="row mb-4">
-        <div class="col-12">
-            <h2 class="pa-h2">{{ __('Related video', 'iasd') }}</h2>
+        <div class="col-12 pa-widget">
+            <h2>{{ __('Related video', 'iasd') }}</h2>
         </div>
     </div>
 
