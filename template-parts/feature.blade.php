@@ -1,5 +1,5 @@
 @notempty($post)
-    <div class="pa-blog-itens mb-5">
+    <div class="pa-blog-itens mb-5 pa-widget">
         <h2 class="mb-4">{{ __('Feature', 'iasd') }}</h2>
 
         <div class="pa-blog-feature pa-w-list-videos">
