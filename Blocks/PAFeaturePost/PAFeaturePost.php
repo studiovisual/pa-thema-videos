@@ -64,9 +64,11 @@ class PAFeaturePost extends Block
 	 * @return array
 	 */
 	public function with(): array {
+    $items = get_field('items');
+
 		return [
 			'title'	=> get_field('title'),
-			'id'	=> !empty($items = get_field('items')) ? $items['data'][0]['id'] : null,
+			'id'	  => !empty($items) && !is_wp_error($items) && isset($items['data']) ? $items['data'][0]['id'] : null,
 		];
 	}
 }

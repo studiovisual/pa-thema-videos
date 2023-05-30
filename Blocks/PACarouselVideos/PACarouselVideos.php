@@ -92,11 +92,12 @@ class PACarouselVideos extends Block
 	 */
 	public function with(): array
     {
-      $mode = get_field('mode');
+      $mode  = get_field('mode');
+      $items = get_field("items_{$mode}");
 
 		return [
 			'title'	=> get_field('title'),
-			'items'	=> array_column(get_field("items_{$mode}")['data'], 'id'),
+			'items'        => !empty($items) && !is_wp_error($items) && isset($items['data']) ? array_column($items['data'], 'id') : null,
 		];
 	}
 
